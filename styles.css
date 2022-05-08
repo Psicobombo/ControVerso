@@ -1,0 +1,265 @@
+/* PALETTE: https://coolors.co/0b132b-1c2541-3a506b-5bc0be-ffffff */
+
+
+
+
+html {
+  padding: 0;
+  margin: 0;
+  color: rgb(50, 104, 221);
+
+}
+
+body {
+  background-color: #1C2541;
+  padding: 0;
+  margin: 0;
+  height: fit-content;
+
+}
+
+#header {
+
+  background-color: #0B132B;
+  overflow: hidden;
+  top: 0px;
+}
+
+#header h1 {
+  font-size: 50px;
+  text-align: center;
+  color: white;
+  font-family: Verdana;
+
+
+}
+
+#twitchConnectionButton {
+  background-color: #9400ff;
+  border: none;
+  color: white;
+  font-family: inherit;
+}
+
+#twitchConnectionButton:hover {
+  background-color: #7a00d1;
+}
+
+#spinnerTwitchConnection {
+  display: none;
+}
+
+#twitchProfileConnected {
+  height: 45px;
+  width: auto;
+  margin-left: 10èx;
+}
+
+#twitchOptions {
+  display: none;
+  margin-top: 10px;
+}
+
+
+.form-switch {
+  margin-top: 0px;
+
+
+
+}
+
+.btn-primary {
+  border: none;
+  background-color: #5BC0BE;
+}
+
+
+
+#menuButton {
+  border-radius: 100%;
+  margin: 10px;
+  background-color: #1C2541;
+  border: none;
+  height: 50x;
+  width: 50px;
+}
+
+#menuButton:hover {
+  border-radius: 100%;
+  margin: 10px;
+  background-color: #5BC0BE;
+  border: none;
+  color: #0B132B;
+}
+
+.tab-contet {
+
+  height: fit-content;
+
+}
+
+
+.form-floating {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  margin-right: 50px;
+}
+
+.match-container {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  background-color: #1C2541;
+  justify-content: center;
+  height: 400px;
+  resize: vertical;
+  overflow: hidden;
+  max-height: 500px;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.modifier-container {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  max-width: 300px;
+  height: 100%;
+  max-height: 700px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: whitesmoke;
+  margin-left: 20px;
+  margin-right: 20px;
+
+}
+
+.modifier-container-buttons {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.modifier-label-container {
+  width: 100%;
+  margin: auto;
+
+}
+
+.modifier-label {
+  margin: auto;
+  text-align: center;
+
+}
+
+.opponent-outer-container {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  width: 25%;
+}
+
+.opponent-inner-container {
+  width: fit-content;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+  background-color: whitesmoke;
+}
+
+
+.opponent-img {
+  cursor: pointer;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  max-height: 700px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: whitesmoke;
+  border: 4px solid transparent;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.opponent-img:hover + .opponent-button-container, .opponent-button-container:hover {
+  display: flex;
+
+}
+
+.opponent-button-container {
+  display: none;
+  flex-direction: row;
+  justify-content: right;
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  top: 0;
+
+}
+
+.opponent-button {
+
+
+}
+
+.vs-container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-left: 20px;
+  margin-right: 20px;
+
+}
+
+.vs-label {
+  font-size: 50px;
+  text-align: center;
+  color: white;
+  position: relative;
+  top: 50%;
+  margin-bottom: 10px;
+
+}
+
+#twitch-container {
+  background-color: #1C2541;
+  padding: 40px;
+  display: none;
+  flex-flow: column;
+  height: 100%;
+  min-height: fit-content;
+  color: white;
+}
+
+#voters-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  height: fit-content;
+  min-height: 50px;
+}
+
+.progress {
+  margin: auto 20%;
+  box-sizing: border-box;
+}
+
+.progress-bar {
+  background-color: #5BC0BE;
+  height: auto;
+  box-sizing: border-box;
+}
+
+
+.match-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+
+
+}
