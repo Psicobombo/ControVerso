@@ -1,36 +1,73 @@
 /* PALETTE: https://coolors.co/0b132b-1c2541-3a506b-5bc0be-ffffff */
 
 
+:root {
+  --left-primary: #ff00b1;
+  --right-primary: #8cc63f;
+  --warmgrey: #232323;
+  --warmwhite:
+
+
+
+}
 
 
 html {
   padding: 0;
   margin: 0;
   color: rgb(50, 104, 221);
+  height: 100%;
+  font-family: "Raleway";
 
 }
 
 body {
-  background-color: #1C2541;
+  background-color: #121212;
   padding: 0;
   margin: 0;
-  height: fit-content;
+  height: 100%
 
 }
 
 #header {
-
-  background-color: #0B132B;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;
+  background-color: var(--warmgrey);
   overflow: hidden;
   top: 0px;
 }
 
+.logo-container {
+  margin-right: auto;
+  height: 100%;
+  width: auto;
+  flex: 1;
+}
+
 #header h1 {
-  font-size: 50px;
+  font-size: 55pt;
   text-align: center;
   color: white;
-  font-family: Verdana;
+  font-family: Raleway;
+  align-self: center;
+  text-transform: uppercase;
 
+
+}
+
+.menu-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
 
 }
 
@@ -64,8 +101,6 @@ body {
 .form-switch {
   margin-top: 0px;
 
-
-
 }
 
 .btn-primary {
@@ -73,14 +108,32 @@ body {
   background-color: #5BC0BE;
 }
 
+.header-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: none;
+  border-radius: 100%;
+  background-color: transparent;
+  border: none;
+  margin: 5px;
+  height: 40px;
+  width: 40px;
+  transition: all 0.3s ease 0s;
+}
 
+.header-button:hover {
+  color: #1C2541;
+  background-color: #5BC0BE;
+}
 
 #menuButton {
   border-radius: 100%;
   margin: 10px;
   background-color: #1C2541;
   border: none;
-  height: 50x;
+  height: 50px;
   width: 50px;
 }
 
@@ -107,32 +160,84 @@ body {
 }
 
 .match-container {
+  background-color: #121212;
   display: flex;
-  flex-flow: row;
+  flex-direction: row;
   width: 100%;
-  background-color: #1C2541;
   justify-content: center;
-  height: 400px;
-  resize: vertical;
+  height: fit-content;
   overflow: hidden;
-  max-height: 500px;
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+
+.opponent-card {
+  border:2px solid black;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  background-color: white !important;
+  overflow: hidden;
+  padding: 0;
   align-items: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  border-radius: 25px;
+  aspect-ratio: 9/16;
+
+  transition: all 0.4s ease 0.1s;
+}
+
+.opponent-card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 50px 15px black;
+  
+  
+}
+
+.opponent-card-description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 40%;
+  box-sizing: border-box;
+  background-color: var(--warmgrey) !important;
+  align-self: flex-end;
+
+}
+
+
+.opponent-label {
+  font-family: Helvetica;
+  text-align: center;
+  font-size: 18pt;
+  font-weight: 900;
+  margin-top: 10px;
+  margin-left: 7px;
+  margin-right: 7px;
+  margin-bottom: 20px;
+  background-color: transparent !important;
+  color: black;
 }
 
 .modifier-container {
   display: flex;
   flex-direction: column;
-  width: 200px;
-  max-width: 300px;
-  height: 100%;
-  max-height: 700px;
+  width: 100%;
+  height: auto;
   box-sizing: border-box;
-  border-radius: 4px;
-  background-color: whitesmoke;
-  margin-left: 20px;
-  margin-right: 20px;
+  visibility: visible;
+  align-self: flex-end;
+  color: white;
+  padding-left: 15px;
+  padding-right: 15px;
+
+}
+
+.modifier-title {
+  font-family: Raleway;
+  font-size: 14pt;
+  font-weight: bold;
+  margin-bottom: 15px;
 
 }
 
@@ -142,87 +247,156 @@ body {
 
 }
 
-.modifier-label-container {
-  width: 100%;
-  margin: auto;
-
-}
 
 .modifier-label {
-  margin: auto;
-  text-align: center;
+  font-family: Raleway;
+  font-weight: 900;
+  overflow: auto;
+  font-size: 15pt;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+  width: 100%;
+  height: 40%;
+  background-color: black;
+  border-radius: 10px;
+  padding-bottom: 30%;
 
 }
 
-.opponent-outer-container {
-  overflow: hidden;
+.modifier-button {
   display: flex;
   justify-content: center;
-  flex: 1;
-  height: 100%;
-  width: 25%;
+  align-items: center;
+  color: white !important;
+  border: none;
+  border-radius: 100%;
+  border: none;
+  margin: 10px;
+  margin-left: 0px;
+  height: 40px;
+  width: 40px;
+  transition: all 0.3s ease 0s;
 }
 
-.opponent-inner-container {
-  width: fit-content;
-  height: 100%;
-  position: relative;
-  box-sizing: border-box;
-  background-color: whitesmoke;
+.left {
+  background-color: var(--left-primary);
+  color: var(--left-primary);
 }
+
+.right {
+background-color: var(--right-primary);
+color: var(--right-primary);
+}
+
+
+.modifier-button:hover {
+  color: white;
+  background-color: black;
+}
+
 
 
 .opponent-img {
-  cursor: pointer;
-  width: auto;
-  max-width: 100%;
-  height: 100%;
-  max-height: 700px;
+  object-fit: cover;
+  width: 100%;
+  height: 60%;
   box-sizing: border-box;
-  border-radius: 4px;
-  background-color: whitesmoke;
-  border: 4px solid transparent;
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-}
+  opacity: 100%;
+  border: none;
+  margin: 0;
 
-.opponent-img:hover + .opponent-button-container, .opponent-button-container:hover {
+}
+.opponent-card:hover .opponent-button-container {
   display: flex;
+
 
 }
 
 .opponent-button-container {
+  background-color: transparent !important;
   display: none;
+  position: absolute;
   flex-direction: row;
   justify-content: right;
-  position: absolute;
-  z-index: 2;
-  right: 0;
-  top: 0;
+  z-index: 5;
+  right: 10px;
+  top: 10px;
+
+  transition: all 0.3s ease 0.1s;
 
 }
 
 .opponent-button {
+display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white !important;
+  border: none;
+  border-radius: 100%;
+  border: none;
+  margin: 10px;
+  margin-left: 0px;
+  height: 40px;
+  width: 40px;
+  transition: all 0.3s ease 0s;
+
+
+}
+
+.opponent-button:hover {
+  background-color: black;
 
 
 }
 
 .vs-container {
+  margin-left: 10%;
+  margin-right: 10%;
   display: flex;
   flex-direction: column;
   align-self: center;
-  margin-left: 20px;
-  margin-right: 20px;
+  justify-content: center;
+  align-items: center;
 
 }
 
 .vs-label {
-  font-size: 50px;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: white;
+  font-size: 55px;
   text-align: center;
-  color: white;
+  color: #0B132B;
   position: relative;
   top: 50%;
   margin-bottom: 10px;
 
+}
+
+#newMatch-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  margin: 5px;
+  background-color: #1C2541;
+  color: white;
+  border: none;
+  height: 50px;
+  width: 50px;
+  transition: all 0.3s;
+
+
+}
+
+#newMatch-button:hover {
+  border-radius: 100%;
+  margin: 10px;
+  background-color: #5BC0BE;
+  border: none;
+  color: #0B132B;
 }
 
 #twitch-container {
@@ -256,10 +430,61 @@ body {
 
 
 .match-buttons-container {
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+}
+
+.teamSelection-button-container {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 
+}
+
+.teamSelection-button {
+  display: flex;
+  flex-direction: row;
+  margin: 25px;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0;
+  overflow: hidden;
+  border-width: 0;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+  background-color: white;
+  color: #1C2541;
+
+  transition: all 0.3s;
+}
+
+.teamSelection-button:hover {
+
+  background-color: #1C2541;
+  color: white;
+
+}
+
+.selected {
+  background-color: #1C2541;
+  color: white;
+
+}
+
+.teamSelection-icon {
+  margin: 5px;
+}
+
+.teamSelection-label {
+  margin-right: 15px;
+}
+
+#winnerConfirmation-button {
+  width: 100px;
+  align-self: center;
+  visibility: hidden;
 
 
 }

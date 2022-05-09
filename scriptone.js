@@ -1,6 +1,7 @@
 var activeMatch = false
 var endedMatches = []
 var selectedOpponent
+var selectedWinner
 
 // listen for load event in the window
 window.addEventListener("load", function () {
@@ -249,16 +250,64 @@ function customizeOpponent(clickedDiv) {
 
     if (selectedOpponent = "left") {
         document.getElementById("vs-participant-left").src = inputURL
-    }else{
+    } else {
         document.getElementById("vs-participant-right").src = inputURL
     }
 }
 
 function setSelectedOpponent(clickedDiv) {
-    
+
     if ("left" in clickedDiv.classList) {
         selectedOpponent = "left"
-    }else{
+    } else {
         selectedOpponent = "right"
     }
+}
+
+
+function selectWinner(side) {
+
+    if (selectedWinner != side) {
+        selectedWinner = side
+        resetTeamSelection()
+        document.getElementById("teamSelection-button-" + side).classList.add("selected")
+        document.getElementById(side + "Selection-icon").innerHTML = "star"
+        document.getElementById("winnerConfirmation-button").style.visibility = "visible"
+        console.log("selectedWinner settato su: " + side)
+    } else {
+        selectedWinner = null
+        document.getElementById("winnerConfirmation-button").style.visibility = "hidden"
+        resetTeamSelection()
+        console.log("selectedWinner annullato")
+    }
+
+}
+
+function resetTeamSelection() {
+
+    document.getElementById("leftSelection-icon").innerHTML = "star_outline"
+    document.getElementById("drawSelection-icon").innerHTML = "star_outline"
+    document.getElementById("rightSelection-icon").innerHTML = "star_outline"
+
+    document.getElementById("teamSelection-button-left").className = "teamSelection-button"
+    document.getElementById("teamSelection-button-draw").className = "teamSelection-button"
+    document.getElementById("teamSelection-button-right").className = "teamSelection-button"
+
+
+
+}
+
+function toggleModifiersVisibility() {
+    modifiersVisibility = !modifiersVisibility
+
+    if (modifiersVisibility) {
+        document.getElementById("modifier-container-left") .style.visibility = "visible"
+        document.getElementById("modifier-container-right") .style.visibility = "visible"
+    }else{
+        document.getElementById("modifier-container-left") .style.visibility = "collapse"
+        document.getElementById("modifier-container-right") .style.visibility = "collapse"
+    }
+
+
+
 }
