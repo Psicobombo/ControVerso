@@ -2,6 +2,8 @@ var activeMatch = false
 var endedMatches = []
 var selectedOpponent
 var selectedWinner
+var twitchSafeMode
+var twitchConnection = false
 
 // listen for load event in the window
 window.addEventListener("load", function () {
@@ -9,7 +11,7 @@ window.addEventListener("load", function () {
 
     // do things after the DOM loads fully
 
-    generateNewMatch()
+    new Match(getRandom("character"), getRandom("character"))
 
 });
 
@@ -50,14 +52,9 @@ function chooseWinner(clickedImage) {
 }
 
 
-function generateNewMatch() {
+function newRandomMatch() {
 
-    //select random participants images from imagesURLs
-    const randomImage1 = imagesURLs[Math.floor(Math.random() * imagesURLs.length)];
-    const randomImage2 = imagesURLs[Math.floor(Math.random() * imagesURLs.length)];
-
-    let newMatch = new Match([randomImage1, randomImage2])
-    newMatch.display()
+    new Match(getRandom("character"), getRandom("character"), getRandom("title"))
     resetModifiers()
 
 }
@@ -67,21 +64,24 @@ async function toggleTwitchConnection() {
     let twitchConnectionButtonSpinner = document.getElementById("spinnerTwitchConnection")
     let twitchConnectionButtonText = document.getElementById("twitchButtonText")
     let twitchContainer = document.getElementById("twitch-container")
-    let profileTwitchConnected = document.getElementById("twitchProfileConnected")
     let twitchOptionsPanel = document.getElementById("twitchOptions")
+    let twitchUsernameInput = document.getElementById("twitchUsernameInput")
 
     if (!twitchConnection) {
         let twitchUsername = document.getElementById("twitchUsernameInput").value
-        if (!twitchUsername) { return false }
+        if (!twitchUsername) {
+
+            if (!twitchUsernameInput.classList.contains('is-invalid'))
+                twitchUsernameInput.classList.add('is-invalid');
+
+            return false
+        }
 
 
         twitchConnectionButtonSpinner.style.display = "inline-block"
 
 
         twitchConnectionButtonText.textContent = "CONNECTING"
-
-        profileImage = await getProfilePic(twitchUsername)
-        if (!profileImage) { return false }
 
         ComfyJS.Init(twitchUsername)
 
@@ -90,14 +90,17 @@ async function toggleTwitchConnection() {
         ComfyJS.onConnected = async (address, port, isFirstConnect) => {
             console.log("Connected to " + twitchUsername)
 
+            twitchUsernameInput.classList.add("is-valid")
+            if (twitchUsernameInput.classList.contains('is-invalid'))
+                twitchUsernameInput.classList.remove('is-invalid');
+
+
             twitchContainer.style.display = "flex"
 
             twitchConnection = true
             twitchConnectionButtonSpinner.style.display = "none"
 
 
-            profileTwitchConnected.src = profileImage
-            profileTwitchConnected.style.display = "block"
             twitchConnectionButtonText.textContent = "DISCONNECT"
             twitchOptionsPanel.style.display = "inline-block"
 
@@ -105,13 +108,17 @@ async function toggleTwitchConnection() {
     } else {
         if (!confirm("Disconnect from Twitch?")) { return false };
         ComfyJS.Disconnect();
+        console.log("Disconnected from chat")
 
         twitchContainer.style.display = "none"
 
         twitchConnection = false
 
-        profileTwitchConnected.src = ""
-        profileTwitchConnected.style.display = "none"
+        if (twitchUsernameInput.classList.contains('is-invalid'))
+            twitchUsernameInput.classList.remove('is-invalid');
+
+        if (twitchUsernameInput.classList.contains('is-valid'))
+            twitchUsernameInput.classList.remove('is-valid');
 
 
         twitchConnectionButtonText.textContent = "CONNECT"
@@ -154,47 +161,36 @@ async function addPastMatch(match) {
 
 function randomizeTitle() {
 
-    titleDiv = document.getElementById("tournamentTitle")
-    currentTitle = titleDiv.innerHTML
+    currentTitle = activeMatch.title
+
     let randomTitle = currentTitle
 
     while (randomTitle == currentTitle) {
         //select random title from list
-        randomTitle = titles[Math.floor(Math.random() * titles.length)];
+        randomTitle = getRandom("title")
     }
 
-    //change title div to random string
-    titleDiv.innerHTML = randomTitle
+    activeMatch.title = randomTitle
+    //refresh page
+    activeMatch.display()
 }
 
-function randomizeModifier(containerId) {
+function randomizeModifier(id) {
 
     //change title div to random string
-    if (containerId == "left") {
-        currentModifierDiv = document.getElementById("modifier-left")
+    if (id == "left") {
+        modifierDiv = document.getElementById("modifier-left")
     }
     else {
-        currentModifierDiv = document.getElementById("modifier-right")
+        modifierDiv = document.getElementById("modifier-right")
     }
 
-    currentMod = currentModifierDiv.innerHTML
-    let randomMod = currentMod
-
-    while (randomMod == currentMod) {
-        //select random modifier from list
-        randomMod = modifiers[Math.floor(Math.random() * modifiers.length)];
-
-    }
-
-    currentModifierDiv.innerHTML = randomMod
-
-
-
+    modifierDiv.value = getRandom("modifier").label
 }
 
 function clearModifier(containerId) {
 
-    //change title div to random string
+    
     if (containerId == "left") {
         currentModifierDiv = document.getElementById("modifier-left")
     }
@@ -202,7 +198,7 @@ function clearModifier(containerId) {
         currentModifierDiv = document.getElementById("modifier-right")
     }
 
-    currentModifierDiv.innerHTML = "Inserisci modificatore..."
+    currentModifierDiv.value = ""
 }
 
 function resetModifiers() {
@@ -210,35 +206,22 @@ function resetModifiers() {
     leftModifierDiv = document.getElementById("modifier-left")
     rightModifierDiv = document.getElementById("modifier-right")
 
-    leftModifierDiv.innerHTML = "Inserisci modificatore..."
-    rightModifierDiv.innerHTML = "Inserisci modificatore..."
-
-
+    leftModifierDiv.value= ""
+    rightModifierDiv.value = ""
 }
 
 
 
 function randomizeOpponent(id) {
 
-
     if (id == "left") {
-        opponentDiv = document.getElementById("vs-participant-left")
+        activeMatch.leftOpponent = getRandom("character")
 
     } else {
-        opponentDiv = document.getElementById("vs-participant-right")
+        activeMatch.rightOpponent = getRandom("character")
     }
 
-    currentOpponent = opponentDiv.src
-
-    let randomOpponent = currentOpponent
-
-    while (randomOpponent == currentOpponent) {
-        //select random opponent from list
-        randomOpponent = imagesURLs[Math.floor(Math.random() * imagesURLs.length)];
-
-    }
-
-    opponentDiv.src = randomOpponent
+    activeMatch.display()
 }
 
 
@@ -297,16 +280,57 @@ function resetTeamSelection() {
 
 }
 
-function toggleModifiersVisibility() {
-    modifiersVisibility = !modifiersVisibility
+function getRandom(element) {
 
-    if (modifiersVisibility) {
-        document.getElementById("modifier-container-left") .style.visibility = "visible"
-        document.getElementById("modifier-container-right") .style.visibility = "visible"
-    }else{
-        document.getElementById("modifier-container-left") .style.visibility = "collapse"
-        document.getElementById("modifier-container-right") .style.visibility = "collapse"
-    }
+    let randomElement
+
+
+    do {
+        switch (element) {
+            case "character":
+
+                //select random opponent from list
+                randomElement = characters[Math.floor(Math.random() * characters.length)];
+
+                break;
+            case "modifier":
+
+                //select random opponent from list
+                randomElement = modifiers[Math.floor(Math.random() * modifiers.length)];
+
+                break;
+            case "title":
+
+                //select random opponent from list
+                randomElement = titles[Math.floor(Math.random() * titles.length)];
+                console.log("Random title: " + randomElement)
+
+                break;
+            default:
+                return false;
+                break;
+
+        }
+
+    } while (twitchSafeMode && !randomElement.twitchSafe);
+
+    return randomElement;
+
+
+}
+
+
+
+
+
+
+
+function updateTwitchSafeMode() {
+
+    twitchSafeMode = document.getElementById("twitchSafeMode-checkbox").checked;
+
+    console.log("Twitch Safe Mode: " + twitchSafeMode)
+
 
 
 

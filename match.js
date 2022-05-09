@@ -1,8 +1,9 @@
 class Match {
-    constructor(opponentsImagesArray) {
-        this.id = endedMatches.length + 1
-        this.leftOpponent = opponentsImagesArray[0]
-        this.rightOpponent = opponentsImagesArray[1]
+    constructor(char1, char2, title = {"label": "OVERTHINK"}) {      //title is optional parameter, if not passed (eg in startup) dafaults to game name
+        this.id = endedMatches.length + 1 
+        this.leftOpponent = char1
+        this.rightOpponent = char2
+        this.title = title
         this.winner = null
         this.loser = null
         this.votesPercentage = 50
@@ -10,17 +11,33 @@ class Match {
             left: [],
             right: []
         }
+
+        this.display()
     }
 
 
     display() {
+
         activeMatch = this
-        let leftParticipant = document.getElementById("vs-participant-left")
-        leftParticipant.src = this.leftOpponent
 
+        //set title
+        //TODO: update this.title when user types in title div!!!
+
+        let titleDiv = document.getElementById("tournamentTitle")
+        titleDiv.innerHTML = this.title.label
+
+        // set left card image
+        let leftImage = document.getElementById("vs-participant-left")
+        leftImage.src = this.leftOpponent.url
+        // set left card label
+        document.getElementById("opponent-label-left").innerHTML = this.leftOpponent.label
+
+        // set right card image
         let rightParticipant = document.getElementById("vs-participant-right")
-        rightParticipant.src = this.rightOpponent
+        rightParticipant.src = this.rightOpponent.url
 
+        // set right card label
+        document.getElementById("opponent-label-right").innerHTML = this.rightOpponent.label
     }
 
     end(winner) {

@@ -1,4 +1,7 @@
 
+var clinetId
+var clinetSecret
+
 function getTwitchAuthorization() {
     let url = `https://id.twitch.tv/oauth2/token?client_id=${clinetId}&client_secret=${clinetSecret}&grant_type=client_credentials`;
 
