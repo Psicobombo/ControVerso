@@ -25,6 +25,7 @@ var sw = {
       sw.timer = setInterval(sw.tick, 1000);
       sw.ego.value = "Stop";
       sw.ego.onclick = sw.stop;
+      pollActive = true
     },
   
     // STOP
@@ -33,6 +34,7 @@ var sw = {
       sw.timer = null;
       sw.ego.value = "Start";
       sw.ego.onclick = sw.start;
+      pollActive = false
     },
   
     // TIMER ACTION
@@ -56,6 +58,7 @@ var sw = {
       if (sw.timer != null) { sw.stop(); }
       sw.now = -1;
       sw.tick();
+      pollActive = false
     }
   };
   

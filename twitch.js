@@ -123,6 +123,8 @@ async function getProfilePic(username) {
 
 ComfyJS.onChat = (user, message, flags, self, extra) => {
 
+    console.log(user + ": " + message)
+
     if (self) { return };
     if (!pollActive) { return }
 

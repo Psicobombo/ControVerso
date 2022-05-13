@@ -131,20 +131,6 @@ function customizeOpponent() {
     }
 }
 
-function setSelectedOpponent(id) {
-
-    console.log(clickedDiv.classList)
-    if (id == "left") {
-        selectedOpponent = "left"
-        console.log("LEFT")
-    } else {
-        selectedOpponent = "right"
-    }
-    console.log("Opponent selected: " + selectedOpponent)
-}
-
-
-
 function getRandom(element) {
 
     let randomElement
