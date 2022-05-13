@@ -23,11 +23,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/comfy.js@latest/dist/comfy.min.js"></script>
     <script src="twitch.js"></script>
-    <script src="imagesURLs.js"></script>
     <script src="characters.js"></script>
     <script src="modifiers.js"></script>
     <script src="titles.js"></script>
-    <script src="config.js"></script>
+    <script src="stopwatch.js"></script>
     <script src="match.js"></script>
     <script src="scriptone.js"></script>
 
@@ -47,8 +46,8 @@
                     shuffle
                 </span></button>
 
-            <button id="menu-button" type="button" class="btn btn-lg btn-primary" data-bs-toggle="modal"
-                data-bs-target="#menuModal"><i class="bi bi-three-dots"></i></button>
+            <button id="menu-button" type="button" data-bs-toggle="modal"
+                data-bs-target="#menuModal"><span class="material-icons settings-icon">settings</span></button>
 
 
         </div>
@@ -58,6 +57,7 @@
 
     <div class="match-container">
 
+
         <div class="opponent-card left" id="opponent-card-left">
 
             <div class="opponent-button-container left">
@@ -66,7 +66,7 @@
                         shuffle
                     </span></button>
                 <button class="opponent-button left" data-bs-toggle="modal" data-bs-target="#customOpponentModal"
-                    onclick="customizeOpponent(this)"><span class="material-icons">
+                    onclick="selectedOpponent = 'left'"><span class="material-icons">
                         edit
                     </span></button>
             </div>
@@ -83,7 +83,8 @@
                     <span class="modifier-title">Modificatore</span>
 
 
-                    <textarea class="modifier-textarea" placeholder="Inserisci modificatore..." id="modifier-left" contenteditable="true" spellcheck="false" rows="3"></textarea>
+                    <textarea class="modifier-textarea" placeholder="Inserisci modificatore..." id="modifier-left"
+                        contenteditable="true" spellcheck="false" rows="3"></textarea>
 
 
                     <div class="modifier-container-buttons">
@@ -101,13 +102,55 @@
             </div>
         </div>
 
+        <div id="center-screen-container">
+
+            <div class="twitch" id="twitch-voteCommands-title">Per votare digita:</div>
+
+            <div class="twitch" id="twitch-voteCommands-container">
+
+                <div class="twitch-voteCommands-label left" id="twitch-voteLeft-label">#1</div>
+                <div class="twitch-voteCommands-label right" id="twitch-voteRight-label">#2</div>
 
 
+            </div>
 
-        <button id="newMatch-button" onclick="newRandomMatch()"><span class="material-icons shuffle-icon"
-                id="newMatch-shuffle-icon">
-                shuffle
-            </span><span id="vs-label">VS</span></button>
+            <div id="newMatch-button-container">
+
+                <button id="newMatch-button" onclick="newRandomMatch()"><span class="material-icons shuffle-icon"
+                        id="newMatch-shuffle-icon">
+                        shuffle
+                    </span><span id="vs-label">VS</span></button>
+
+                <div class="circular twitch" id="twitch-piechart-container">
+
+                    <svg height="300" width="300">
+                        <circle cx="150" cy="150" r="150" stroke-width="200" />
+                    </svg>
+
+                </div>
+            </div>
+
+            <div class="twitch" id="twitch-percentages-container">
+
+                <div class="twitch-percentage-label left" id="twitch-left-percentage">50%</div>
+                <div class="twitch-percentage-label right" id="twitch-right-percentage">50%</div>
+
+            </div>
+
+            <div class="twitch" id="stopwatch">
+                <input class="stopwatch-button" type="button" value="Start" id="sw-go" />
+
+                <!-- CURRENT TIME -->
+
+                <div id="sw-time">00:00</div>
+
+
+                <!-- CONTROLS -->
+                <input class="stopwatch-button" type="button" value="Reset" id="sw-rst" />
+
+            </div>
+
+        </div>
 
 
         <div class="opponent-card right" id="opponent-card-right">
@@ -118,7 +161,7 @@
                         shuffle
                     </span></button>
                 <button class="opponent-button right" data-bs-toggle="modal" data-bs-target="#customOpponentModal"
-                    onclick="customizeOpponent(this)"><span class="material-icons">
+                    onclick="selectedOpponent = 'right'"><span class="material-icons">
                         edit
                     </span></button>
             </div>
@@ -127,15 +170,16 @@
 
             <div class="opponent-card-description right" id="opponent-card-description-right">
 
-                <span class="opponent-label right" id="opponent-label-right" contenteditable="true"
-                    spellcheck="false">PERSONAGGIO DESTRA</span>
+                <span class="opponent-label right" onchange="updateMatchData()" id="opponent-label-right"
+                    contenteditable="true" spellcheck="false">PERSONAGGIO DESTRA</span>
 
                 <div class="modifier-container" id="modifier-container-right">
 
                     <span class="modifier-title">Modificatore</span>
 
 
-                    <textarea class="modifier-textarea" placeholder="Inserisci modificatore..." id="modifier-right" contenteditable="true" spellcheck="false" rows="3"></textarea>
+                    <textarea class="modifier-textarea" placeholder="Inserisci modificatore..." id="modifier-right"
+                        contenteditable="true" spellcheck="false" rows="3"></textarea>
 
                     <div class="modifier-container-buttons">
                         <button class="modifier-button right" title="Randomizza modificatore"
@@ -154,60 +198,6 @@
         </div>
 
 
-
-    </div>
-
-
-    <div class="twitch" id="twitch-container">
-        <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated w-50" role="progressbar"
-                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
-        </div>
-        <div id="voters-container">
-            <div id="voters-left">voters left:
-                <ul id="voters-left-list">
-                    <li>Stheinfame</li>
-                    <li>imviolet_</li>
-                    <li>Yotobi</li>
-                </ul>
-            </div>
-            <div id="voters-right">voters right:
-                <ul id="voters-right-list">
-                    <li>pastadelcapitano</li>
-                    <li>MuserP</li>
-                    <li>ilGattoSulTubo</li>
-                </ul>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-    <div class="match-buttons-container">
-        <div class="teamSelection-button-container">
-
-            <button class="teamSelection-button" id="teamSelection-button-left" onclick="selectWinner('left')"><span
-                    class="material-icons teamSelection-icon" id="leftSelection-icon">
-                    star_outline
-                </span> <span class="teamSelection-label">Vince sinistra</span> </button>
-            <button class="teamSelection-button" id="teamSelection-button-draw" onclick="selectWinner('draw')"><span
-                    class="material-icons teamSelection-icon" id="drawSelection-icon">
-                    star_outline
-                </span><span class="teamSelection-label">Pareggio</span> </button>
-            <button class="teamSelection-button" id="teamSelection-button-right" onclick="selectWinner('right')"><span
-                    class="material-icons teamSelection-icon" id="rightSelection-icon">
-                    star_outline
-                </span><span class="teamSelection-label">Vince destra</span> </button>
-        </div>
-
-        <button class="teamSelection-button" id="winnerConfirmation-button" onclick="confirmWinner()"><span
-                class="material-icons teamSelection-icon" id="rightSelection-icon">
-                gavel
-            </span><span class="teamSelection-label">Sicuro?</span> </button>
-
     </div>
 
 
@@ -220,65 +210,92 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
+
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="general-tab" data-bs-toggle="tab"
-                                data-bs-target="#general" type="button" role="tab" aria-controls="general"
-                                aria-selected="true">General</button>
+                                data-bs-target="#general-options" type="button" role="tab"
+                                aria-controls="general-options" aria-selected="true">General</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="twitch-tab" data-bs-toggle="tab" data-bs-target="#twitch"
-                                type="button" role="tab" aria-controls="twitch" aria-selected="false">Twitch</button>
+                            <button class="nav-link" id="twitch-tab" data-bs-toggle="tab"
+                                data-bs-target="#twitch-options" type="button" role="tab" aria-controls="twitch-options"
+                                aria-selected="false">Twitch</button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="extra-tab" data-bs-toggle="tab" data-bs-target="#extra"
-                                type="button" role="tab" aria-controls="extra" aria-selected="false">Extra</button>
-                        </li>
+
                     </ul>
+
+
+
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="general" role="tabpanel"
+
+                        <div class="tab-pane fade show active" id="general-options" role="tabpanel"
                             aria-labelledby="general-tab">
-                            <input type="checkbox" id="twitchSafeMode-checkbox" name="twitchSafeMode-checkbox" onclick="updateTwitchSafeMode()" value="false">
-                            <label for="twitchSafeMode-checkbox"> Twitch Safe Mode</label><br>
 
+                            <div class="options-container" id="generalOptions-container">
 
-                        </div>
-                        <div class="tab-pane fade" id="twitch" role="tabpanel" aria-labelledby="twitch-tab">
+                                <input type="checkbox" id="twitchSafeMode-checkbox" name="twitchSafeMode-checkbox"
+                                    onclick="updateTwitchSafeMode()" value="false">
+                                <label for="twitchSafeMode-checkbox"> Twitch Safe Mode</label><br>
 
-
-                            <div id="twitchUsername-container">
-                                <form class="form-floating">
-                                    <input type="text" class="form-control" id="twitchUsernameInput"
-                                        placeholder="Twitch username">
-                                    <div class="invalid-feedback">
-                                        Invalid username.
-                                    </div>
-                                    <label for="twitchUsernameInput">Twitch username</label>
-                                </form>
                             </div>
+                        </div>
 
-                            <div class="row align-items-center">
-                                <div class="col-md-auto">
-                                    <button class="button btn" type="button" aria-hidden="true"
-                                        id="twitchConnectionButton" onclick="toggleTwitchConnection()">
-                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"
-                                            id="spinnerTwitchConnection"></span>
+                        <div class="tab-pane fade" id="twitch-options" role="tabpanel" aria-labelledby="twitch-tab">
+
+                            <div id="twitch-options-container">
+
+                                <div id="twitchUsername-container">
+
+                                    <input type="text" class="form-control" id="twitchUsernameInput"
+                                        placeholder="Twitch username" onsubmit="toggleTwitchConnection()">
+                                    <div class="invalid-feedback"></div>
+
+                                    <button class="" type="button" aria-hidden="true" id="twitchConnection-button"
+                                        onclick="toggleTwitchConnection()">
+
                                         <div class="button-text" id="twitchButtonText">CONNECT </div>
+
                                     </button>
+
                                 </div>
 
 
+
+
+
+
+
+
+                                <div class="twitch" id="twitch-extra-options">
+
+                                    <form class="form-floating">
+                                        <input type="text" class="form-control" id="twitchVoteLeftCommand"
+                                            placeholder="1">
+                                        <div class="invalid-feedback">
+                                            Invalid command
+                                        </div>
+                                        <label for="twitchVoteLeftCommand">Vote left alias</label>
+                                    </form>
+
+                                    <form class="form-floating">
+                                        <input type="text" class="form-control" id="twitchVoteRightCommand"
+                                            placeholder="2">
+                                        <div class="invalid-feedback">
+                                            Invalid command
+                                        </div>
+                                        <label for="twitchVoteRightCommand">Vote right alias</label>
+                                    </form>
+
+
+
+                                </div>
                             </div>
-                            <div id="twitchOptions">
-                                additional twitch options here
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="extra" role="tabpanel" aria-labelledby="extra-tab">Extra options
                         </div>
                     </div>
-
-
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
@@ -298,19 +315,17 @@
                 </div>
                 <div class="modal-body">
                     <form class="form-floating">
-                        <input type="text" class="form-control" id="opponentUrlInput" placeholder="URL dell'immagine">
-                        <label for="twitchUsernameInput">URL dell'immagine</label>
+                        <input type="url" class="form-control" id="opponentUrlInput"
+                            oninput="document.getElementById('opponentPreview').src = this.value"
+                            placeholder="URL dell'immagine">
+                        <label for="opponentUrlInput">URL dell'immagine</label>
                     </form>
-
-                    <div class="row align-items-center">
-                        <button class="confirmCustomOpponentButton" onclick="customizeOpponent(this)">SELECT</button>
-
-                        <div class="col">
-                            <img id="opponentPreview" src="">
-                        </div>
+                    <img id="opponentPreview" src="">
 
 
-                    </div>
+                    <button class="confirmCustomOpponentButton" onclick="customizeOpponent()">SELECT</button>
+
+
 
                 </div>
             </div>

@@ -11,6 +11,8 @@ window.addEventListener("load", function () {
 
     // do things after the DOM loads fully
 
+    sw.init()
+
     new Match(getRandom("character"), getRandom("character"))
 
 });
@@ -30,27 +32,12 @@ function shuffle(array) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
 
-        // And swap it with the current element.
+        // And swap it with the current element
         [array[currentIndex], array[randomIndex]] = [
             array[randomIndex], array[currentIndex]];
     }
     return array;
 }
-
-function updateProgressBar() {
-    activeMatch.votesPercentage //TO DO
-
-}
-
-
-function chooseWinner(clickedImage) {
-
-    if (clickedImage.id.includes("left")) {
-
-        activeMatch.end("left")
-    } else { activeMatch.end("right") }
-}
-
 
 function newRandomMatch() {
 
@@ -59,107 +46,10 @@ function newRandomMatch() {
 
 }
 
-async function toggleTwitchConnection() {
-
-    let twitchConnectionButtonSpinner = document.getElementById("spinnerTwitchConnection")
-    let twitchConnectionButtonText = document.getElementById("twitchButtonText")
-    let twitchContainer = document.getElementById("twitch-container")
-    let twitchOptionsPanel = document.getElementById("twitchOptions")
-    let twitchUsernameInput = document.getElementById("twitchUsernameInput")
-
-    if (!twitchConnection) {
-        let twitchUsername = document.getElementById("twitchUsernameInput").value
-        if (!twitchUsername) {
-
-            if (!twitchUsernameInput.classList.contains('is-invalid'))
-                twitchUsernameInput.classList.add('is-invalid');
-
-            return false
-        }
-
-
-        twitchConnectionButtonSpinner.style.display = "inline-block"
-
-
-        twitchConnectionButtonText.textContent = "CONNECTING"
-
-        ComfyJS.Init(twitchUsername)
-
-
-
-        ComfyJS.onConnected = async (address, port, isFirstConnect) => {
-            console.log("Connected to " + twitchUsername)
-
-            twitchUsernameInput.classList.add("is-valid")
-            if (twitchUsernameInput.classList.contains('is-invalid'))
-                twitchUsernameInput.classList.remove('is-invalid');
-
-
-            twitchContainer.style.display = "flex"
-
-            twitchConnection = true
-            twitchConnectionButtonSpinner.style.display = "none"
-
-
-            twitchConnectionButtonText.textContent = "DISCONNECT"
-            twitchOptionsPanel.style.display = "inline-block"
-
-        }
-    } else {
-        if (!confirm("Disconnect from Twitch?")) { return false };
-        ComfyJS.Disconnect();
-        console.log("Disconnected from chat")
-
-        twitchContainer.style.display = "none"
-
-        twitchConnection = false
-
-        if (twitchUsernameInput.classList.contains('is-invalid'))
-            twitchUsernameInput.classList.remove('is-invalid');
-
-        if (twitchUsernameInput.classList.contains('is-valid'))
-            twitchUsernameInput.classList.remove('is-valid');
-
-
-        twitchConnectionButtonText.textContent = "CONNECT"
-        twitchOptionsPanel.style.display = "none"
-    }
-}
-
-
-
-async function addPastMatch(match) {
-
-    let rankingList = document.getElementById("ranking-list")
-    let newListItem = document.createElement('li')
-    newListItem.setAttribute('class', 'ranking-listitem')
-    let newDiv = document.createElement('div')
-    newDiv.setAttribute('class', 'ranking-participant')
-    let loserImage = document.createElement("img")
-    loserImage.setAttribute('src', match.loser.img)
-    loserImage.setAttribute('class', 'past-loser-image')
-    let winnerImage = document.createElement('img')
-    winnerImage.setAttribute('src', match.winner.img)
-    winnerImage.setAttribute('class', 'past-winner-image')
-
-    if (match.opponents.left == match.winner) {
-        newDiv.appendChild(winnerImage)
-        newDiv.appendChild(loserImage)
-    } else {
-        newDiv.appendChild(loserImage)
-        newDiv.appendChild(winnerImage)
-    }
-
-    newListItem.appendChild(newDiv)
-    rankingList.appendChild(newListItem)
-
-
-
-
-
-}
 
 function randomizeTitle() {
+
+    updateMatchData()
 
     currentTitle = activeMatch.title
 
@@ -190,7 +80,7 @@ function randomizeModifier(id) {
 
 function clearModifier(containerId) {
 
-    
+
     if (containerId == "left") {
         currentModifierDiv = document.getElementById("modifier-left")
     }
@@ -206,13 +96,15 @@ function resetModifiers() {
     leftModifierDiv = document.getElementById("modifier-left")
     rightModifierDiv = document.getElementById("modifier-right")
 
-    leftModifierDiv.value= ""
+    leftModifierDiv.value = ""
     rightModifierDiv.value = ""
 }
 
 
 
 function randomizeOpponent(id) {
+
+    updateMatchData()
 
     if (id == "left") {
         activeMatch.leftOpponent = getRandom("character")
@@ -225,60 +117,33 @@ function randomizeOpponent(id) {
 }
 
 
-function customizeOpponent(clickedDiv) {
+function customizeOpponent() {
 
     inputURL = document.getElementById("opponentUrlInput").value
 
     console.log(inputURL)
+    console.log(selectedOpponent)
 
-    if (selectedOpponent = "left") {
+    if (selectedOpponent == "left") {
         document.getElementById("vs-participant-left").src = inputURL
     } else {
         document.getElementById("vs-participant-right").src = inputURL
     }
 }
 
-function setSelectedOpponent(clickedDiv) {
+function setSelectedOpponent(id) {
 
-    if ("left" in clickedDiv.classList) {
+    console.log(clickedDiv.classList)
+    if (id == "left") {
         selectedOpponent = "left"
+        console.log("LEFT")
     } else {
         selectedOpponent = "right"
     }
+    console.log("Opponent selected: " + selectedOpponent)
 }
 
 
-function selectWinner(side) {
-
-    if (selectedWinner != side) {
-        selectedWinner = side
-        resetTeamSelection()
-        document.getElementById("teamSelection-button-" + side).classList.add("selected")
-        document.getElementById(side + "Selection-icon").innerHTML = "star"
-        document.getElementById("winnerConfirmation-button").style.visibility = "visible"
-        console.log("selectedWinner settato su: " + side)
-    } else {
-        selectedWinner = null
-        document.getElementById("winnerConfirmation-button").style.visibility = "hidden"
-        resetTeamSelection()
-        console.log("selectedWinner annullato")
-    }
-
-}
-
-function resetTeamSelection() {
-
-    document.getElementById("leftSelection-icon").innerHTML = "star_outline"
-    document.getElementById("drawSelection-icon").innerHTML = "star_outline"
-    document.getElementById("rightSelection-icon").innerHTML = "star_outline"
-
-    document.getElementById("teamSelection-button-left").className = "teamSelection-button"
-    document.getElementById("teamSelection-button-draw").className = "teamSelection-button"
-    document.getElementById("teamSelection-button-right").className = "teamSelection-button"
-
-
-
-}
 
 function getRandom(element) {
 
@@ -303,7 +168,7 @@ function getRandom(element) {
 
                 //select random opponent from list
                 randomElement = titles[Math.floor(Math.random() * titles.length)];
-                console.log("Random title: " + randomElement)
+                
 
                 break;
             default:
@@ -320,18 +185,51 @@ function getRandom(element) {
 }
 
 
-
-
-
-
-
 function updateTwitchSafeMode() {
 
     twitchSafeMode = document.getElementById("twitchSafeMode-checkbox").checked;
 
     console.log("Twitch Safe Mode: " + twitchSafeMode)
 
+}
 
 
+function updateMatchLeftPercentage() {
 
+    // Calculate left percentage as: leftVotes/TotalVotes
+    let calculatedLeftPerc = activeMatch.voters.left.size / (activeMatch.voters.left.size + activeMatch.voters.right.size)
+
+    // Update match object
+    activeMatch.leftPercentage = calculatedLeftPerc
+
+    // update piechart by updating root variable --leftPercentage
+    let r = document.querySelector(':root');
+    r.style.setProperty('--leftPercentage', activeMatch.leftPercentage);
+
+
+}
+
+
+function updateMatchData() {
+
+    // push user-made changes to the activeMatch object
+
+    // update title
+    let titleDiv = document.getElementById("tournamentTitle")
+    activeMatch.title = {"label" : titleDiv.innerHTML, "twitchSafe" : true, "category" : ""}
+
+    // update left card image
+    let leftImage = document.getElementById("vs-participant-left")
+    activeMatch.leftOpponent.url = leftImage.src
+
+    // update left card label
+    activeMatch.leftOpponent.label = document.getElementById("opponent-label-left").innerText
+
+     // update right card image
+     let rightImage = document.getElementById("vs-participant-right")
+     activeMatch.rightOpponent.url = rightImage.src
+
+    // update right card label
+    activeMatch.rightOpponent.label = document.getElementById("opponent-label-right").innerText
+    console.log(activeMatch)
 }
