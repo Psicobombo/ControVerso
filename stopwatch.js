@@ -59,6 +59,9 @@ var sw = {
       sw.now = -1;
       sw.tick();
       pollActive = false
+
+      //reset percentage, clear voters and update piechart
+      activeMatch.resetPoll()
     }
   };
   

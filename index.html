@@ -36,9 +36,9 @@
 
     <div id="header">
         <div class="logo-container"></div>
-        <div class="title-container">
-            <h1 id="tournamentTitle" contenteditable="true" spellcheck="false">OVERTHINK</h1>
-        </div>
+
+        <textarea id="title" rows="2" spellcheck="false">OVERTHINK</textarea>
+
         <div class="menu-container">
 
             <button id="randomizeTitle-button" title="Randomizza titolo" onclick="randomizeTitle()"><span
@@ -46,8 +46,8 @@
                     shuffle
                 </span></button>
 
-            <button id="menu-button" type="button" data-bs-toggle="modal"
-                data-bs-target="#menuModal"><span class="material-icons settings-icon">settings</span></button>
+            <button id="menu-button" type="button" data-bs-toggle="modal" data-bs-target="#menuModal"><span
+                    class="material-icons settings-icon">settings</span></button>
 
 
         </div>
@@ -238,6 +238,9 @@
                                 <input type="checkbox" id="twitchSafeMode-checkbox" name="twitchSafeMode-checkbox"
                                     onclick="updateTwitchSafeMode()" value="false">
                                 <label for="twitchSafeMode-checkbox"> Twitch Safe Mode</label><br>
+
+                                <input type="color" id="color-picker-left" onchange="updateCustomColors()" value="#ff00b1">
+                                <input type="color" id="color-picker-right" onchange="updateCustomColors()" value="#8cc63f">
 
                             </div>
                         </div>

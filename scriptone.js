@@ -188,10 +188,14 @@ function updateMatchLeftPercentage() {
     // Update match object
     activeMatch.leftPercentage = calculatedLeftPerc
 
+    updatePieChart()
+}
+
+function updatePieChart() {
+
     // update piechart by updating root variable --leftPercentage
     let r = document.querySelector(':root');
     r.style.setProperty('--leftPercentage', activeMatch.leftPercentage);
-
 
 }
 
@@ -201,7 +205,7 @@ function updateMatchData() {
     // push user-made changes to the activeMatch object
 
     // update title
-    let titleDiv = document.getElementById("tournamentTitle")
+    let titleDiv = document.getElementById("title")
     activeMatch.title = {"label" : titleDiv.innerHTML, "twitchSafe" : true, "category" : ""}
 
     // update left card image

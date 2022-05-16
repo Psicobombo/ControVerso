@@ -28,11 +28,10 @@ body {
 }
 
 #header {
-  background-color: #121212;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   margin-right: auto;
@@ -47,18 +46,24 @@ body {
 .logo-container {
   margin-right: auto;
   height: 100%;
-  width: auto;
   flex: 1;
 }
 
-#header h1 {
+#title{
   font-size: 55pt;
   text-align: center;
+  border: none;
+  resize: none;
   color: white;
+  background-color: #121212;
+  
   font-family: Raleway;
   text-transform: uppercase;
   margin-top: 10px;
-
+  width: 100%;
+  line-height: 100%;
+  overflow: hidden;
+  flex: 8;
 
 }
 
@@ -80,6 +85,17 @@ body {
 .header-button:hover {
   color: #1C2541;
   background-color: white;
+}
+
+.menu-container {
+  flex: 1;
+  display: flex;
+  align-items:center;
+  justify-content: flex-end;
+  margin-left: auto;
+  min-width: fit-content;
+  height: 100%;
+
 }
 
 #randomizeTitle-button {
@@ -132,15 +148,7 @@ body {
 
 
 
-.menu-container {
-  flex: 1;
-  display: flex;
-  align-items:center;
-  justify-content: flex-end;
-  margin-left: auto;
-  height: 100%;
 
-}
 
 #generalOptions-container {
   display: flex;
@@ -322,6 +330,7 @@ body {
   font-weight: 900;
   border: none;
   text-transform: uppercase;
+  line-height: 100%;
   margin-top: 10px;
   margin-left: 7px;
   margin-right: 7px;
