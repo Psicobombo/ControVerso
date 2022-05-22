@@ -1,7 +1,7 @@
 class Match {
-    constructor(char1, char2, title = { "label": "OVERTHINK" }) {      //title is optional parameter, if not passed (eg in startup) dafaults to game name
-        this.leftOpponent = char1
-        this.rightOpponent = char2
+    constructor({character1, character2, title = { "label": "OVERTHINK" }}) {      //title is optional parameter, if not passed (eg in startup) dafaults to game name
+        this.leftOpponent = character1
+        this.rightOpponent = character2
         this.title = title
         this.leftPercentage = 0.5
         this.voters = {
@@ -17,13 +17,13 @@ class Match {
 
         activeMatch = this
 
-
         let titleDiv = document.getElementById("title")
         titleDiv.innerHTML = this.title.label
 
         // set left card image
         let leftImage = document.getElementById("vs-participant-left")
         leftImage.src = this.leftOpponent.url
+        
         // set left card label
         document.getElementById("opponent-label-left").innerText = this.leftOpponent.label
 
@@ -33,10 +33,6 @@ class Match {
 
         // set right card label
         document.getElementById("opponent-label-right").innerText = this.rightOpponent.label
-
-        // update piechart by updating root variable --leftPercentage
-        let r = document.querySelector(':root');
-        r.style.setProperty('--leftPercentage', activeMatch.leftPercentage);
 
         updatePieChart()
 

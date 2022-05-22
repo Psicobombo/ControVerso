@@ -1,86 +1,98 @@
 titles = [
   {
     "label": "Chi fa più ridere?",
-    "twitchSafe": true
+    "isTwitchSafe": true
   },
   {
     "label": "Chi piace di più ai bambini?",
-    "twitchSafe": true
+    "isTwitchSafe": true
   },
   {
-    "label": "Quale è un grande statista?",
-    "twitchSafe": false
+    "label": "Chi eleggi come Presidente del Pianeta Terra?",
+    "isTwitchSafe": true
   },
   {
-    "label": "Chi porteresti al luna park con te?",
-    "twitchSafe": true
+    "label": "Chi porti al luna park con te?",
+    "isTwitchSafe": true
   },
   {
-    "label": "Chi vincerebbe in una gara di nuoto?",
-    "twitchSafe": true
+    "label": "Chi vince in una gara di nuoto?",
+    "isTwitchSafe": true
   },
   {
     "label": "Chi è il più gustosetto?",
-    "twitchSafe": false
+    "isTwitchSafe": false
   },
   {
     "label": "Chi vince a pugni?",
-    "twitchSafe": false
+    "isTwitchSafe": true
   },
   {
     "label": "Chi è il più simpatico?",
-    "twitchSafe": true
+    "isTwitchSafe": true
   },
   {
-    "label": "Hai finito il sale, a chi chiederesti il sale?",
-    "twitchSafe": true
+    "label": "Hai finito il sale, a quale vicino lo chiedi?",
+    "isTwitchSafe": true
   },
   {
-    "label": "Quale dei due vorresti all'interno della tua ciurma pirata?",
-    "twitchSafe": true
+    "label": "Chi vuoi all'interno della tua ciurma pirata?",
+    "isTwitchSafe": true
   },
   {
     "label": "In un apocalisse zombie chi vorresti come amico?",
-    "twitchSafe": true
+    "isTwitchSafe": true
   },
   {
     "label": "Gli alieni invadono la terra, a chi assomigliano?",
-    "twitchSafe": true
+    "isTwitchSafe": true
   },
   {
-    "label": "Chi dei due farebbe più successo ad una festa ?",
-    "twitchSafe": true
+    "label": "Chi dei due ha più successo ad una festa?",
+    "isTwitchSafe": true
   },
   {
-    "label": "Quale dei due vorresti essere ?",
-    "twitchSafe": true
+    "label": "Quale dei due vorresti essere?",
+    "isTwitchSafe": true
   },
   {
-    "label": "Di chi sarebbe figlio il bullo della tua classe delle medie ?",
-    "twitchSafe": true
+    "label": "Chi è il genitore del bullo della tua classe delle medie?",
+    "isTwitchSafe": true
   },
   {
-    "label": "Un meteorite sta per colpire la terra puoi salvare una persona chi salveresti ?",
-    "twitchSafe": true
+    "label": "Un meteorite sta per colpire la terra, chi salvi?",
+    "isTwitchSafe": true
   },
   {
     "label": "A chi affideresti il tuo cane per una settimana?",
-    "twitchSafe": true
+    "isTwitchSafe": true
   },
   {
     "label": "Chi scegli come partner per una partita a padel?",
-    "twitchSafe": true
+    "isTwitchSafe": true
   },
   {
-    "label": "Con chi condividere la camera da letto per una notte?",
-    "twitchSafe": true
+    "label": "Con chi condivideresti la camera da letto per una notte?",
+    "isTwitchSafe": true
   },
   {
     "label": "In un viaggio aereo di 12 ore, vicino a chi ti siedi?",
-    "twitchSafe": true
+    "isTwitchSafe": true
   },
   {
     "label": "Qual è il miglior protagonista per un videogioco?",
-    "twitchSafe": true
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Chi ammazzeresti per salvare 10 bambini?",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Con chi matcheresti su Tinder?",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Con chi andresti al ballo scolastico?",
+    "isTwitchSafe": true
   }
 ]

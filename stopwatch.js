@@ -1,5 +1,5 @@
 var sw = {
-    // (A) PROPERTIES
+    // PROPERTIES
     etime : null, // html time display
     erst : null, // html reset button
     ego : null, // html start/stop button
@@ -25,6 +25,8 @@ var sw = {
       sw.timer = setInterval(sw.tick, 1000);
       sw.ego.value = "Stop";
       sw.ego.onclick = sw.stop;
+
+      // start twitch poll
       pollActive = true
     },
   
@@ -34,12 +36,14 @@ var sw = {
       sw.timer = null;
       sw.ego.value = "Start";
       sw.ego.onclick = sw.start;
+
+      // stop twitch poll
       pollActive = false
     },
   
     // TIMER ACTION
     tick : () => {
-      // (E1) CALCULATE HOURS, MINS, SECONDS
+      // CALCULATE MINS, SECONDS
       sw.now++;
       let mins = 0, secs = 0,
       remain = sw.now;
@@ -58,7 +62,6 @@ var sw = {
       if (sw.timer != null) { sw.stop(); }
       sw.now = -1;
       sw.tick();
-      pollActive = false
 
       //reset percentage, clear voters and update piechart
       activeMatch.resetPoll()

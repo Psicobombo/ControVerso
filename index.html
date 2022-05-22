@@ -34,19 +34,19 @@
 
 <body>
 
-    <div id="header">
+    <div class="header">
         <div class="logo-container"></div>
 
-        <textarea id="title" rows="2" spellcheck="false">OVERTHINK</textarea>
+        <textarea class="title" id="title" rows="2" spellcheck="false">OVERTHINK</textarea>
 
         <div class="menu-container">
 
-            <button id="randomizeTitle-button" title="Randomizza titolo" onclick="randomizeTitle()"><span
+            <button class="randomize-title-button" id="randomizeTitle-button" title="Randomizza titolo" onclick="randomizeTitle()"><span
                     class="material-icons shuffle-icon">
                     shuffle
                 </span></button>
 
-            <button id="menu-button" type="button" data-bs-toggle="modal" data-bs-target="#menuModal"><span
+            <button class="settings-button" id="menu-button" type="button" data-bs-toggle="modal" data-bs-target="#menuModal"><span
                     class="material-icons settings-icon">settings</span></button>
 
 
@@ -58,9 +58,9 @@
     <div class="match-container">
 
 
-        <div class="opponent-card left" id="opponent-card-left">
+        <div class="opponent-card" id="opponent-card-left">
 
-            <div class="opponent-button-container left">
+            <div class="opponent-button-container">
                 <button class="opponent-button left" onclick="randomizeOpponent('left')"><span
                         class="material-icons shuffle-icon">
                         shuffle
@@ -73,7 +73,7 @@
 
             <img class="opponent-img" id="vs-participant-left" src="">
 
-            <div class="opponent-card-description left" id="opponent-card-description-left">
+            <div class="opponent-card-description" id="opponent-card-description-left">
 
                 <span class="opponent-label left" id="opponent-label-left" contenteditable="true"
                     spellcheck="false">PERSONAGGIO SINISTRA</span>
@@ -102,11 +102,11 @@
             </div>
         </div>
 
-        <div id="center-screen-container">
+        <div class="center-screen-container">
 
-            <div class="twitch" id="twitch-voteCommands-title">Per votare digita:</div>
+            <div class="twitch twitch-voteCommands-title" id="twitch-voteCommands-title">Per votare digita:</div>
 
-            <div class="twitch" id="twitch-voteCommands-container">
+            <div class="twitch twitch-voteCommands-container" id="twitch-voteCommands-container">
 
                 <div class="twitch-voteCommands-label left" id="twitch-voteLeft-label">#1</div>
                 <div class="twitch-voteCommands-label right" id="twitch-voteRight-label">#2</div>
@@ -114,36 +114,36 @@
 
             </div>
 
-            <div id="newMatch-button-container">
+            <div class="newMatch-button-container">
 
-                <button id="newMatch-button" onclick="newRandomMatch()"><span class="material-icons shuffle-icon"
+                <button class="newMatch-button" onclick="newRandomMatch()"><span class="material-icons shuffle-icon"
                         id="newMatch-shuffle-icon">
                         shuffle
-                    </span><span id="vs-label">VS</span></button>
+                    </span><span class="vs-label">VS</span></button>
 
-                <div class="circular twitch" id="twitch-piechart-container">
+                <div class="circular twitch twitch-piechart-container" id="twitch-piechart-container">
 
-                    <svg height="300" width="300">
-                        <circle cx="150" cy="150" r="150" stroke-width="200" />
+                    <svg height="100%" width="100%">
+                        <circle cx="50%" cy="50%" r="50%" stroke-width="100%" />
                     </svg>
 
                 </div>
             </div>
 
-            <div class="twitch" id="twitch-percentages-container">
+            <div class="twitch twitch-percentages-container" id="twitch-percentages-container">
 
                 <div class="twitch-percentage-label left" id="twitch-left-percentage">50%</div>
                 <div class="twitch-percentage-label right" id="twitch-right-percentage">50%</div>
 
             </div>
 
-            <div class="twitch" id="stopwatch">
+            <div class="twitch stopwatch" id="stopwatch">
                 <input class="stopwatch-button" type="button" value="Start" id="sw-go" />
 
                 <!-- CURRENT TIME -->
-
-                <div id="sw-time">00:00</div>
-
+                <div class="sw-time-container">
+                    <span id="sw-time">00:00</span>
+                </div>
 
                 <!-- CONTROLS -->
                 <input class="stopwatch-button" type="button" value="Reset" id="sw-rst" />
@@ -153,9 +153,9 @@
         </div>
 
 
-        <div class="opponent-card right" id="opponent-card-right">
+        <div class="opponent-card" id="opponent-card-right">
 
-            <div class="opponent-button-container right">
+            <div class="opponent-button-container">
                 <button class="opponent-button right" onclick="randomizeOpponent('right')"><span
                         class="material-icons shuffle-icon">
                         shuffle
@@ -168,9 +168,9 @@
 
             <img class="opponent-img" id="vs-participant-right" src="">
 
-            <div class="opponent-card-description right" id="opponent-card-description-right">
+            <div class="opponent-card-description" id="opponent-card-description-right">
 
-                <span class="opponent-label right" onchange="updateMatchData()" id="opponent-label-right"
+                <span class="right opponent-label" onchange="updateMatchData()" id="opponent-label-right"
                     contenteditable="true" spellcheck="false">PERSONAGGIO DESTRA</span>
 
                 <div class="modifier-container" id="modifier-container-right">
@@ -201,7 +201,7 @@
     </div>
 
 
-    <!-- Menù Modal -->
+    <!-- Settings Modal -->
     <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -235,27 +235,37 @@
 
                             <div class="options-container" id="generalOptions-container">
 
-                                <input type="checkbox" id="twitchSafeMode-checkbox" name="twitchSafeMode-checkbox"
-                                    onclick="updateTwitchSafeMode()" value="false">
-                                <label for="twitchSafeMode-checkbox"> Twitch Safe Mode</label><br>
+                                <div class="twitchSafeMode-container">
 
-                                <input type="color" id="color-picker-left" onchange="updateCustomColors()" value="#ff00b1">
-                                <input type="color" id="color-picker-right" onchange="updateCustomColors()" value="#8cc63f">
+                                    <input type="checkbox" class="twitch-safeMode-checkbox" id="twitchSafeMode-checkbox" name="twitchSafeMode-checkbox"
+                                        onclick="updateTwitchSafeMode()" value="false">
+                                    <label for="twitchSafeMode-checkbox"> Twitch Safe Mode</label><br>
+
+                                </div>
+
+                                <div class="color-picker-container">
+
+                                    <input type="color" id="color-picker-left" onchange="updateCustomColors()"
+                                        value="#ff00b1">
+                                    <input type="color" id="color-picker-right" onchange="updateCustomColors()"
+                                        value="#8cc63f">
+
+                                </div>
 
                             </div>
                         </div>
 
                         <div class="tab-pane fade" id="twitch-options" role="tabpanel" aria-labelledby="twitch-tab">
 
-                            <div id="twitch-options-container">
+                            <div class="twitch-options-container" id="twitch-options-container">
 
-                                <div id="twitchUsername-container">
+                                <div class="twitch-username-container">
 
                                     <input type="text" class="form-control" id="twitchUsernameInput"
                                         placeholder="Twitch username" onsubmit="toggleTwitchConnection()">
                                     <div class="invalid-feedback"></div>
 
-                                    <button class="" type="button" aria-hidden="true" id="twitchConnection-button"
+                                    <button class="twitch-connection-button" type="button" aria-hidden="true" id="twitchConnection-button"
                                         onclick="toggleTwitchConnection()">
 
                                         <div class="button-text" id="twitchButtonText">CONNECT </div>
@@ -271,10 +281,10 @@
 
 
 
-                                <div class="twitch" id="twitch-extra-options">
+                                <div class="twitch extra-options" id="twitch-extra-options">
 
                                     <form class="form-floating">
-                                        <input type="text" class="form-control" id="twitchVoteLeftCommand"
+                                        <input type="text" class="form-control twitch-vote-command" id="twitchVoteLeftCommand"
                                             placeholder="1">
                                         <div class="invalid-feedback">
                                             Invalid command
@@ -283,7 +293,7 @@
                                     </form>
 
                                     <form class="form-floating">
-                                        <input type="text" class="form-control" id="twitchVoteRightCommand"
+                                        <input type="text" class="form-control twitch-vote-command" id="twitchVoteRightCommand"
                                             placeholder="2">
                                         <div class="invalid-feedback">
                                             Invalid command

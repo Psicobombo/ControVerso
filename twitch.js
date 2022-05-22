@@ -1,8 +1,8 @@
 
-var clinetId
-var clinetSecret
+const clinetId = ""
+const clinetSecret = ""
 
-var voteLeftCommand = "#1"
+var voteLeftCommand = "#1"      // defaults commands: #1 and #2
 var voteRightCommand = "#2"
 var pollActive = false
 
@@ -19,132 +19,102 @@ function getTwitchAuthorization() {
         });
 }
 
-
 async function toggleTwitchConnection() {
 
+    // init DOM variables
     let twitchConnectionButtonText = document.getElementById("twitchButtonText")
-
     let twitchUsernameInput = document.getElementById("twitchUsernameInput")
-
     let twitchElements = document.getElementsByClassName('twitch');
 
+    // if twitch is not connected => CONNECT
     if (!twitchConnection) {
-        let twitchUsername = document.getElementById("twitchUsernameInput").value
+
+        var twitchUsername = document.getElementById("twitchUsernameInput").value
+
+        // if input username is null: set text box style as invalid and return
         if (!twitchUsername) {
 
-            if (!twitchUsernameInput.classList.contains('is-invalid'))
-                twitchUsernameInput.classList.add('is-invalid');
-
+            twitchUsernameInput.classList.add('is-invalid');
             return false
         }
 
         twitchConnectionButtonText.textContent = "CONNECTING"
 
-
+        // connect to the specified user's chat
         ComfyJS.Init(twitchUsername)
 
+        // when connected event
         ComfyJS.onConnected = async (address, port, isFirstConnect) => {
 
             twitchConnection = true
 
-            console.log("Connected to " + twitchUsername)
+            console.log(`Connected to: ${twitchUsername}'s chat`)
 
+            // set text box style to valid
             twitchUsernameInput.classList.add("is-valid")
-            if (twitchUsernameInput.classList.contains('is-invalid'))
-                twitchUsernameInput.classList.remove('is-invalid');
+            twitchUsernameInput.classList.remove('is-invalid');
 
-            for (let i = 0; i < twitchElements.length; i++) {
-                twitchElements[i].style.visibility = "visible";
-            }
+            // actually show twitch-related html elements (= with twitch class)
+            Array.from(twitchElements).forEach(element => {
+                element.style.visibility = "visible";
+            });
 
             twitchConnectionButtonText.textContent = "DISCONNECT"
-
-
         }
-    } else {
-        if (!confirm("Disconnect from Twitch?")) { return false };
-        ComfyJS.Disconnect();
-        console.log("Disconnected from chat")
 
-        document.getElementById("twitch-piechart-container").style.visibility = "collapse"
+        // if twitch was already connected => disconnect
+    } else {
+
+        // generate confirm dialog: CONFIRM = true; CANCEL = false
+        if (!confirm("Disconnect from Twitch?")) { return false };
+
+        ComfyJS.Disconnect();
 
         twitchConnection = false
 
-        if (twitchUsernameInput.classList.contains('is-invalid'))
-            twitchUsernameInput.classList.remove('is-invalid');
 
-        if (twitchUsernameInput.classList.contains('is-valid'))
-            twitchUsernameInput.classList.remove('is-valid');
-
+        // reset text box to default style
+        twitchUsernameInput.classList.remove('is-invalid', 'is-valid')
 
         twitchConnectionButtonText.textContent = "CONNECT"
 
-        for (let i = 0; i < twitchElements.length; i++) {
-            twitchElements[i].style.visibility = "collapse";
-        }
+        // reset stopwatch and twitch poll
+        sw.reset()
 
-
+        Array.from(twitchElements).forEach(element => {
+            element.style.visibility = "collapse";
+        });
     }
 }
 
+ComfyJS.onError = async (error) => {
 
-
-async function getProfilePic(username) {
-    const endpoint = "https://api.twitch.tv/helix/users?login=" + username;
-
-    let authorizationObject = await getTwitchAuthorization();
-    let { access_token, expires_in, token_type } = authorizationObject;
-
-    //token_type first letter must be uppercase    
-    token_type =
-        token_type.substring(0, 1).toUpperCase() +
-        token_type.substring(1, token_type.length);
-
-    let authorization = `${token_type} ${access_token}`;
-
-    let headers = {
-        authorization,
-        "Client-Id": clinetId,
-    };
-
-    const response = await fetch(endpoint, { headers, });
-    const json = await response.json();
-
-    try {
-        var imgURL = json["data"][0]["profile_image_url"]
-    return imgURL;
-    } catch (error) {
-        return false
-    }
-    
-
+    //TODO: better twitch error handling
+    console.log("errore grosso")
+    alert(error);
 }
-
 
 ComfyJS.onChat = (user, message, flags, self, extra) => {
 
-    console.log(user + ": " + message)
-
     if (self) { return };
-    if (!pollActive) { return }
+    if (!pollActive) { return };
 
-    if(activeMatch.voters.right.has(user) || activeMatch.voters.left.has(user)) { return }
-    else{
-        if (message.includes(voteLeftCommand)) {
-            activeMatch.voters.left.add(user) 
-            console.log(activeMatch.voters)}
-        else if (message.includes(voteRightCommand)) {
-            activeMatch.voters.right.add(user)
-            console.log(activeMatch.voters)
-        
-        }
+    // ignore users who already voted
+    var userAlreadyVoted = activeMatch.voters.right.has(user) || activeMatch.voters.left.has(user)
 
+    if (message.includes(voteLeftCommand) && !userAlreadyVoted) {
+        activeMatch.voters.left.add(user)
         updateMatchLeftPercentage()
-        console.log(activeMatch.leftPercentage)
     }
-
+    else if (message.includes(voteRightCommand) && !userAlreadyVoted) {
+        activeMatch.voters.right.add(user)
+        updateMatchLeftPercentage()
+    }
+    
 };
 
+
+// fires on chat messages starting with !
 ComfyJS.onCommand = async (user, command, message, flags, extra) => {
     if (twitchConnection) {
 
@@ -180,31 +150,41 @@ async function getID(username) {
     } catch (TypeError) {
         console.log("Failed to retrieve ID of " + username)
         refresh();
-
     }
-
-
-    // console.log(userID)
     return userID;
 }
 
-function toggleTwitchPoll() {
+async function getProfilePic(username) {
+    const endpoint = "https://api.twitch.tv/helix/users?login=" + username;
 
-    pollActive = !pollActive
+    let authorizationObject = await getTwitchAuthorization();
+    let { access_token, expires_in, token_type } = authorizationObject;
 
-    let pollToggleButton = document.getElementById("twitch-poll-toggle-button")
+    //token_type first letter must be uppercase    
+    token_type =
+        token_type.substring(0, 1).toUpperCase() +
+        token_type.substring(1, token_type.length);
 
-    if(pollActive) {
-        pollToggleButton.innerHTML = "STOP POLL"
+    let authorization = `${token_type} ${access_token}`;
 
+    let headers = {
+        authorization,
+        "Client-Id": clinetId,
+    };
 
+    const response = await fetch(endpoint, { headers, });
+    const json = await response.json();
 
+    try {
 
-    }else{
-        pollToggleButton.innerHTML = "START POLL"
+        var imgURL = json["data"][0]["profile_image_url"]
+        return imgURL;
+
+    } catch (error) {
+        console.log(error)
+        return false
     }
 
 
-
-
 }
+

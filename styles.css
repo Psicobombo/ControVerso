@@ -1,4 +1,4 @@
-/* PALETTE: https://coolors.co/0b132b-1c2541-3a506b-5bc0be-ffffff */
+/* PALETTE: https://coolors.co/ff00b1-8cc63f-232323-121212-ffffff */
 
 
 :root {
@@ -22,23 +22,19 @@ html {
 
 body {
   background-color: #121212 !important;
-  padding: 0;
-  margin: 0;
   height: 100%
 }
 
-#header {
+.header {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: center;
   width: 100%;
   margin-right: auto;
   margin-left: auto;
   box-sizing: border-box;
   overflow: hidden;
-  top: 0px;
 
   transition: all 1s;
 }
@@ -49,113 +45,106 @@ body {
   flex: 1;
 }
 
-#title{
-  font-size: 55pt;
+.title {
+  font-size: clamp(1rem, 5vw, 8rem);
+
   text-align: center;
   border: none;
   resize: none;
   color: white;
   background-color: #121212;
-  
+
   font-family: Raleway;
   text-transform: uppercase;
-  margin-top: 10px;
+  margin-top: 1%;
   width: 100%;
   line-height: 100%;
   overflow: hidden;
   flex: 8;
-
-}
-
-.header-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  border: none;
-  border-radius: 100%;
-  background-color: transparent;
-  border: none;
-  margin: 5px;
-  height: 40px;
-  width: 40px;
-  transition: all 0.3s ease 0s;
-}
-
-.header-button:hover {
-  color: #1C2541;
-  background-color: white;
 }
 
 .menu-container {
   flex: 1;
   display: flex;
-  align-items:center;
-  justify-content: flex-end;
+  justify-content: center;
   margin-left: auto;
   min-width: fit-content;
-  height: 100%;
 
 }
 
-#randomizeTitle-button {
+.randomize-title-button {
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   border: none;
-  border-radius: 100%;
+  border-radius: 50%;
   background-color: transparent;
 
-  margin: 10px;
-  border: none;
-  height: 50px;
-  width: 50px;
+  margin: 10%;
+  height: fit-content;
+  padding: 5%;
 
   transition: all 0.3s ease 0s;
-
 }
 
-#randomizeTitle-button:hover {
-  
- 
+.randomize-title-button:hover {
+
   background-color: white;
-  
-  color: #0B132B;
+  color: black;
 }
 
-#menu-button {
+.settings-button {
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   border: none;
-  border-radius: 100%;
+  border-radius: 50%;
   background-color: transparent;
 
-  margin: 10px;
-  border: none;
-  height: 60px;
-  width: 60px;
+  margin: 10%;
+  height: fit-content;
+  padding: 5%;
 
   transition: all 0.3s ease 0s;
 }
 
-#menu-button:hover {
+.settings-button:hover {
   background-color: white;
-  color: #0B132B;
+  color: black;
+}
+
+.material-icons {
+  font-size: clamp(1rem, 1.5vw, 5rem) !important;
 }
 
 
+.options-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5%;
+}
 
-
-
-#generalOptions-container {
+.twitchSafeMode-container {
   display: flex;
   flex-direction: row;
-  padding-top: 20px;
   align-items: center;
-  font-size: 13pt;
+
+}
+
+.twitch-safeMode-checkbox {
+  height: 1rem;
+  width: 1rem;
+  margin-right: 0.5rem;
+
+}
+
+.color-picker-container {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 0px;
+  gap: 10px;
 
 }
 
@@ -163,15 +152,14 @@ body {
   visibility: collapse;
 }
 
-
-#twitchSafeMode-checkbox {
-  height: 20px;
-  width: 20px;
-  margin-right: 7px;
+.twitch-options-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 5%;
 
 }
 
-#twitchUsername-container {
+.twitch-username-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -182,96 +170,55 @@ body {
 
 #twitchUsernameInput {
 
-  max-width: 200px;
-  height: 40px;
-  
+  max-width: 16ch;
+  height: 2.5rem;
 }
 
 .invalid-feedback {
   width: 0% !important;
 }
 
-#twitchConnectionConfirm-icon-done {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: green;
-  width: 40px;
-  height: 40px;
-  visibility: hidden;
-
-}
-
-#twitchConnection-button {
+.twitch-connection-button {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   text-align: center;
   width: fit-content;
-  height: 40px;
-  max-width: 150px;
-  gap: 10px;
-  border-radius: 4px;
-  padding: 10px;
-  margin: 10px;
+  height: 2.5rem;
+
+  border-radius: 0.2rem;
+  padding: 3%;
+  margin: 3%;
   background-color: var(--twitchColor);
   border: none;
   color: white;
 }
 
-#twitchConnection-button:hover {
+.twitch-connection-button:hover {
   background-color: var(--twitchDarkerColor);
   transition: all 0.3s;
 }
 
-
-#twitch-options-container {
-  display: flex;
-  flex-direction: column;
-  padding-top: 10px;
-
-}
-
-#twitch-extra-options {
+.twitch.extra-options {
   visibility: collapse;
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
 }
 
-
-
-#twitchVoteLeftCommand,
-#twitchVoteRightCommand {
+.twitch-vote-command {
   display: flex;
   width: 100%;
   flex: 1;
 }
 
-.form-switch {
-  margin-top: 0px;
-
-}
-
-.btn-primary {
-  border: none;
-  background-color: #5BC0BE;
-}
-
-
-
 .tab-contet {
-
   height: fit-content;
-
 }
 
 
 .form-floating {
   margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 0px;
   margin-right: 50px;
 }
 
@@ -288,16 +235,17 @@ body {
 }
 
 .opponent-card {
-  border: 2px solid black;
   display: flex;
   flex-direction: column;
   width: 20%;
-  background-color: var(--warmgrey) !important;
+  background-color: var(--warmgrey);
   overflow: hidden;
-  padding: 0;
   align-items: center;
-  border-radius: 25px;
+  border-radius: 1.5rem;
   aspect-ratio: 9/16;
+  margin: 0.5rem;
+
+
 
   transition: all 0.4s ease 0.1s;
 }
@@ -305,7 +253,6 @@ body {
 .opponent-card:hover {
   transform: scale(1.1);
   box-shadow: 0 0 50px 15px black;
-
 
 }
 
@@ -316,9 +263,7 @@ body {
   width: 100%;
   height: 40%;
   box-sizing: border-box;
-  background-color: var(--warmgrey) !important;
   align-self: flex-end;
-
 }
 
 
@@ -326,17 +271,18 @@ body {
 
   font-family: Helvetica;
   text-align: center;
-  font-size: 18pt;
+  font-size: clamp(1rem, 1.3vw, 5rem);
   font-weight: 900;
   border: none;
   text-transform: uppercase;
   line-height: 100%;
-  margin-top: 10px;
-  margin-left: 7px;
-  margin-right: 7px;
-  margin-bottom: 20px;
+  margin-top: 3%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 6%;
+
   background-color: transparent !important;
-  
+
 }
 
 .modifier-container {
@@ -346,17 +292,17 @@ body {
   flex-grow: 1;
   box-sizing: border-box;
   color: white;
-  padding-left: 15px;
-  padding-right: 15px;
+
+  padding: 0 4%;
 
 }
 
 .modifier-title {
 
   font-family: Raleway;
-  font-size: 14pt;
+  font-size: clamp(1rem, 1.1vw, 5rem);
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 3%;
 
 }
 
@@ -370,13 +316,10 @@ body {
   font-weight: 900;
   flex-grow: 1;
   overflow: auto;
-  font-size: 15pt;
-  padding: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+  font-size: clamp(1rem, 1.1vw, 5rem);
+  padding: 2.5% 3%;
   color: white;
   width: 100%;
-  max-height: 110px;
   background-color: black;
   border-radius: 10px;
 
@@ -385,10 +328,11 @@ body {
 .modifier-container-buttons {
   display: flex;
   flex-direction: row;
+  gap: 2%;
   align-items: center;
-  height: fit-content;
-  margin-bottom: 5px;
-  margin-top: 5px;
+  height: 25%;
+  margin-bottom: 1%;
+  margin-top: 1%;
 
 }
 
@@ -398,14 +342,12 @@ body {
   align-items: center;
   color: white !important;
   border: none;
-  border-radius: 100%;
-  border: none;
-  margin: 5px;
-  margin-left: 0px;
-  height: 40px;
-  width: 40px;
-  transition: all 0.3s ease 0s;
+  border-radius: 50%;
+
+  height: 80%;
   aspect-ratio: 1/1;
+
+  transition: all 0.3s ease 0s;
 }
 
 .left {
@@ -446,15 +388,19 @@ body {
 }
 
 .opponent-button-container {
-  background-color: transparent !important;
+
   display: flex;
+  height: 6.5%;
+  width: 100%;
   position: absolute;
   flex-direction: row;
   justify-content: right;
   z-index: 5;
-  right: 10px;
-  top: 10px;
-  visibility: hidden;
+  right: 2%;
+  top: 2%;
+  gap: 2%;
+
+  visibility: collapse;
   opacity: 0;
 
   transition: visibility 0s, opacity 0.2s linear;
@@ -467,50 +413,42 @@ body {
   align-items: center;
   color: white !important;
   border: none;
-  border-radius: 100%;
-  border: none;
-  margin: 10px;
-  margin-left: 0px;
-  height: 40px;
-  width: 40px;
+  border-radius: 50%;
+  height: 100%;
+  aspect-ratio: 1/1;
 
   transition: all 0.3s ease 0s;
-
-
 }
 
 .opponent-button:hover {
   background-color: black;
-
-
 }
 
 #opponentPreview {
-  border: #0B132B 2px solid;
+  border: black 2px solid;
   border-radius: 4px;
   height: 40px;
   width: 40px;
-
-
 }
 
-#center-screen-container {
+.center-screen-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-left: 3%;
-  margin-right: 3%;
+  margin: 0 2%;
+  width: 15%;
+  min-width: fit-content;
 }
 
-#twitch-voteCommands-title {
+.twitch-voteCommands-title {
   color: white;
-  font-size: 16pt;
+  font-size: clamp(1rem, 1.3vw, 5rem);
   font-weight: 600;
   margin-bottom: 15%;
 }
 
-#twitch-voteCommands-container {
+.twitch-voteCommands-container {
 
   display: flex;
   flex-direction: row;
@@ -521,26 +459,24 @@ body {
 
 .twitch-voteCommands-label {
   margin-bottom: 15%;
-  
-  font-size: 16pt;
+
+  font-size: clamp(1rem, 1.3vw, 5rem);
   font-weight: 900;
   background-color: transparent !important;
 }
 
-#newMatch-button-container {
+.newMatch-button-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: fit-content;
   position: relative;
+  height: 33%;
+  aspect-ratio: 1/1;
+
   transition: all 0.3s;
-
-
 }
 
-#newMatch-button {
-
+.newMatch-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -551,27 +487,26 @@ body {
   background-color: white;
   color: var(--warmgrey);
   border: none;
-  height: 100px;
-  width: 100px;
+  aspect-ratio: 1/1;
   transition: all 0.3s;
-
-
 }
 
-#newMatch-button:hover {
+.newMatch-button:hover {
   background-color: black;
   border: none;
   color: white;
   border: 2px solid white;
   transform: scale(1.2);
+
+  animation: pulse-animation 1.5s infinite;
 }
 
-#newMatch-button:hover>#vs-label {
+.newMatch-button:hover>.vs-label {
   visibility: collapse;
   opacity: 0;
 }
 
-#newMatch-button:hover>#newMatch-shuffle-icon {
+.newMatch-button:hover>#newMatch-shuffle-icon {
   visibility: visible;
   opacity: 1;
   color: white;
@@ -579,20 +514,20 @@ body {
 }
 
 #newMatch-shuffle-icon {
-  font-size: 50px;
+  font-size: clamp(1em, 2.5vw, 5em) !important;
   visibility: collapse;
   opacity: 0;
   transition: opacity 0.3s, visibility 0s;
 }
 
-#vs-label {
+.vs-label {
   visibility: visible;
   opacity: 1;
-  font-size: 50px;
+  font-size: clamp(1rem, 3vw, 8rem);
   transition: opacity 0.3s, visibility 0s;
 }
 
-#twitch-piechart-container {
+.twitch-piechart-container {
   visibility: collapse;
   z-index: 1;
   display: flex;
@@ -600,20 +535,26 @@ body {
   align-items: center;
   position: relative;
   overflow: hidden;
-  width: 200px;
+  height: 100%;
   aspect-ratio: 1/1;
   border-radius: 50%;
   transition: all 3s;
 
-  animation-duration: 3s;
-  animation-name: blowOut;
- 
+  animation: pulse-animation 2s infinite;
 }
 
+@keyframes pulse-animation {
+  0% {
+    box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.2);
+  }
 
+  100% {
+    box-shadow: 0 0 0 30px rgba(255, 255, 255, 0);
+  }
+}
 
 svg {
-  
+
   transform: rotate(-90deg);
   position: absolute;
   stroke-dasharray: 1257;
@@ -632,75 +573,75 @@ circle {
   transition: all 3s;
 }
 
-#twitch-percentages-container {
+.twitch-percentages-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 80%;
-
-
 }
 
 .twitch-percentage-label {
-
   margin-top: 15%;
   margin-bottom: 10%;
-  font-size: 16pt;
+  font-size: clamp(1rem, 1.3vw, 5rem);
   font-weight: 900;
   background-color: transparent !important;
-
-
 }
 
-#stopwatch {
+.stopwatch {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: fit-content;
-  border-radius: 25px;
-  padding: 5px 10px;
+  width: 100%;
+  height: 9%;
+  border-radius: 1.5rem;
+  padding: 1% 3%;
   background-color: var(--warmgrey);
   color: white;
-font-size: 13pt;
-
+  font-size: clamp(1rem, 1.1vw, 5rem);
 }
 
 .stopwatch-button {
 
-text-align: center;
-border-radius: 25px;
-width: fit-content;
-height: 40px;
-padding: 2px 10px;
-margin: 5px;
-border: none;
+  text-align: center;
+  border-radius: 1.5rem;
+  width: 30%;
+  height: 80%;
+  padding: 1% 3%;
+  margin: 1%;
+  border: none;
 
-
-transition: all 0.3s;
-
+  transition: all 0.3s;
 }
 
-#sw-rst, #sw-go:hover {
+#sw-rst,
+#sw-go:hover {
   background-color: black;
   color: white;
+}
 
+.sw-time-container {
+  height: 100%;
+
+
+  border-radius: 1.5rem;
+  width: fit-content;
+  height: 80%;
+  padding: 3% 3%;
+  margin: 1%;
+  border: none;
+  background-color: black;
 }
 
 #sw-time {
-  
-  margin: 0px 10px;
-  border-radius: 25px;
-  padding: 7px 10px;
-  background-color: black;
   text-align: center;
-  vertical-align: middle;
   font-weight: 900;
-
 }
 
-#sw-go, #sw-rst:hover {
+#sw-go,
+#sw-rst:hover {
   background-color: white;
   color: black;
 
