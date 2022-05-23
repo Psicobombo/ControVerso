@@ -148,8 +148,8 @@ body {
 
 }
 
-.twitch {
-  visibility: collapse;
+.collapse {
+  display: none;
 }
 
 .twitch-options-container {
@@ -201,7 +201,6 @@ body {
 }
 
 .twitch.extra-options {
-  visibility: collapse;
   display: flex;
   flex-direction: row;
 }
@@ -234,6 +233,19 @@ body {
   padding-bottom: 4%;
 }
 
+/* SMARTPHONE LAYOUT */
+@media only screen and (max-width: 400px) {
+  .match-container {
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+  }
+
+  .center-screen-container {
+    height: 15%;
+  }
+}
+
 .opponent-card {
   display: flex;
   flex-direction: column;
@@ -245,15 +257,12 @@ body {
   aspect-ratio: 9/16;
   margin: 0.5rem;
 
-
-
   transition: all 0.4s ease 0.1s;
 }
 
 .opponent-card:hover {
   transform: scale(1.1);
   box-shadow: 0 0 50px 15px black;
-
 }
 
 .opponent-card-description {
@@ -268,7 +277,6 @@ body {
 
 
 .opponent-label {
-
   font-family: Helvetica;
   text-align: center;
   font-size: clamp(1rem, 1.3vw, 5rem);
@@ -282,7 +290,6 @@ body {
   margin-bottom: 6%;
 
   background-color: transparent !important;
-
 }
 
 .modifier-container {
@@ -294,7 +301,6 @@ body {
   color: white;
 
   padding: 0 4%;
-
 }
 
 .modifier-title {
@@ -303,7 +309,6 @@ body {
   font-size: clamp(1rem, 1.1vw, 5rem);
   font-weight: bold;
   margin-bottom: 3%;
-
 }
 
 .modifier-textarea {
@@ -333,7 +338,6 @@ body {
   height: 25%;
   margin-bottom: 1%;
   margin-top: 1%;
-
 }
 
 .modifier-button {
@@ -366,8 +370,6 @@ body {
   background-color: black;
 }
 
-
-
 .opponent-img {
   object-fit: cover;
   background-color: white;
@@ -377,14 +379,11 @@ body {
   opacity: 100%;
   border: none;
   margin: 0;
-
 }
 
 .opponent-card:hover .opponent-button-container {
   visibility: visible;
   opacity: 100%;
-
-
 }
 
 .opponent-button-container {
@@ -404,7 +403,6 @@ body {
   opacity: 0;
 
   transition: visibility 0s, opacity 0.2s linear;
-
 }
 
 .opponent-button {
@@ -480,14 +478,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10%;
   z-index: 5;
   position: absolute;
   border-radius: 100%;
+  height: 60%;
+  aspect-ratio: 1/1;
 
   background-color: white;
   color: var(--warmgrey);
   border: none;
-  aspect-ratio: 1/1;
+
   transition: all 0.3s;
 }
 
@@ -501,32 +502,32 @@ body {
 }
 
 .newMatch-button:hover>.vs-label {
-  visibility: collapse;
+  display: none;
   opacity: 0;
 }
 
 .newMatch-button:hover>#newMatch-shuffle-icon {
-  visibility: visible;
+  display: block;
   opacity: 1;
   color: white;
 }
 
 #newMatch-shuffle-icon {
   font-size: clamp(1em, 2.5vw, 5em) !important;
-  visibility: collapse;
+  display: none;
   opacity: 0;
-  transition: opacity 0.3s, visibility 0s;
+  transition: opacity 0.3s;
 }
 
 .vs-label {
-  visibility: visible;
+  display: block;
   opacity: 1;
   font-size: clamp(1rem, 3vw, 8rem);
-  transition: opacity 0.3s, visibility 0s;
+  transition: opacity 0.3s;
 }
 
 .twitch-piechart-container {
-  visibility: collapse;
+
   z-index: 1;
   display: flex;
   justify-content: center;
@@ -537,7 +538,6 @@ body {
   aspect-ratio: 1/1;
   border-radius: 50%;
   transition: all 3s;
-
 }
 
 .pulse-animation {
@@ -557,7 +557,6 @@ body {
 }
 
 svg {
-
   transform: rotate(-90deg);
   position: absolute;
   stroke-dasharray: 1257;
@@ -566,7 +565,6 @@ svg {
   /* -157.5% is half circle, 0% is full right, -315% is full left      */
   background-color: var(--right-primary);
   transition: all 3s;
-
 }
 
 circle {
@@ -599,6 +597,7 @@ circle {
   align-items: center;
   width: 100%;
   height: 9%;
+  margin: 10%;
   border-radius: 1.5rem;
   padding: 1% 3%;
   background-color: var(--warmgrey);

@@ -46,8 +46,6 @@ var sw = {
 
       // disable twitch-piechart pulse animation
       document.getElementsByClassName("twitch-piechart-container")[0].classList.remove("pulse-animation")
-
-
     },
   
     // TIMER ACTION

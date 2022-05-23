@@ -56,7 +56,7 @@ async function toggleTwitchConnection() {
 
             // actually show twitch-related html elements (= with twitch class)
             Array.from(twitchElements).forEach(element => {
-                element.style.visibility = "visible";
+                element.classList.remove("collapse")
             });
 
             twitchConnectionButtonText.textContent = "DISCONNECT"
@@ -82,7 +82,7 @@ async function toggleTwitchConnection() {
         sw.reset()
 
         Array.from(twitchElements).forEach(element => {
-            element.style.visibility = "collapse";
+            element.classList.add("collapse")
         });
     }
 }

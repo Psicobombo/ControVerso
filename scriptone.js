@@ -19,7 +19,6 @@ window.addEventListener("load", function () {
 
 });
 
-
 function newRandomMatch() {
 
     new Match({
@@ -142,7 +141,7 @@ function updatePieChart() {
 
 }
 
-function owerwritePieChart(percentage) {
+function overwritePieChart(percentage) {
 
     //debug function to overwrite poll percentage
 
