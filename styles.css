@@ -493,7 +493,6 @@ body {
 
 .newMatch-button:hover {
   background-color: black;
-  border: none;
   color: white;
   border: 2px solid white;
   transform: scale(1.2);
@@ -510,7 +509,6 @@ body {
   visibility: visible;
   opacity: 1;
   color: white;
-
 }
 
 #newMatch-shuffle-icon {
@@ -540,7 +538,12 @@ body {
   border-radius: 50%;
   transition: all 3s;
 
+}
+
+.pulse-animation {
+
   animation: pulse-animation 2s infinite;
+
 }
 
 @keyframes pulse-animation {
@@ -623,9 +626,6 @@ circle {
 }
 
 .sw-time-container {
-  height: 100%;
-
-
   border-radius: 1.5rem;
   width: fit-content;
   height: 80%;
@@ -644,5 +644,4 @@ circle {
 #sw-rst:hover {
   background-color: white;
   color: black;
-
 }

@@ -18,12 +18,12 @@ class Match {
         activeMatch = this
 
         let titleDiv = document.getElementById("title")
-        titleDiv.innerHTML = this.title.label
+        titleDiv.innerText = this.title.label
 
         // set left card image
         let leftImage = document.getElementById("vs-participant-left")
         leftImage.src = this.leftOpponent.url
-        
+
         // set left card label
         document.getElementById("opponent-label-left").innerText = this.leftOpponent.label
 

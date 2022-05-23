@@ -28,6 +28,10 @@ var sw = {
 
       // start twitch poll
       pollActive = true
+
+      // animate twitch piechart with pulse
+      document.getElementsByClassName("twitch-piechart-container")[0].classList.add("pulse-animation")
+
     },
   
     // STOP
@@ -39,6 +43,11 @@ var sw = {
 
       // stop twitch poll
       pollActive = false
+
+      // disable twitch-piechart pulse animation
+      document.getElementsByClassName("twitch-piechart-container")[0].classList.remove("pulse-animation")
+
+
     },
   
     // TIMER ACTION

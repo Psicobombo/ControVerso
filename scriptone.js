@@ -107,7 +107,9 @@ function getValidRandom(array) {
     // returns random element from parsed array && checks if element is twitch safe
 
     do {
+
         randomElement = array[Math.floor(Math.random() * array.length)]
+
     } while (twitchSafeMode && !randomElement.isTwitchSafe);   //if twitchSafeMode is enabled make sure element is twitch friendly 
 
     return randomElement;
@@ -117,7 +119,7 @@ function updateTwitchSafeMode() {
 
     twitchSafeMode = document.getElementById("twitchSafeMode-checkbox").checked;
 
-    console.log("Twitch Safe Mode: " + twitchSafeMode)
+    console.log({twitchSafeMode})
 
 }
 
@@ -139,7 +141,6 @@ function updatePieChart() {
     document.getElementById("twitch-right-percentage").innerText = `${100 - (activeMatch.leftPercentage * 100)}%`
 
 }
-
 
 function owerwritePieChart(percentage) {
 

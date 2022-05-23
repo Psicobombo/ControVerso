@@ -90,7 +90,8 @@ async function toggleTwitchConnection() {
 ComfyJS.onError = async (error) => {
 
     //TODO: better twitch error handling
-    console.log("errore grosso")
+
+    // is it even working??!!
     alert(error);
 }
 
@@ -122,7 +123,6 @@ ComfyJS.onCommand = async (user, command, message, flags, extra) => {
         }
     }
 }
-
 
 async function getID(username) {
     const endpoint = "https://api.twitch.tv/helix/users?login=" + username;
