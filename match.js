@@ -2,7 +2,7 @@ class Match {
     constructor({character1, character2, title = { "label": "OVERTHINK" }}) {      //title is optional parameter, if not passed (eg in startup) dafaults to game name
         this.leftOpponent = character1
         this.rightOpponent = character2
-        this.title = title
+        this.title =  title
         this.leftPercentage = 0.5
         this.voters = {
             left: new Set(),
@@ -43,6 +43,8 @@ class Match {
         this.leftPercentage = 0.5
         this.voters.left.clear()
         this.voters.right.clear()
+
+        sw.reset()
 
         updatePieChart()
     }

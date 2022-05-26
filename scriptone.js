@@ -2,13 +2,22 @@ var activeMatch = false
 var endedMatches = []
 var selectedOpponent
 var twitchSafeMode = false
-var twitchConnection = false
 
 // listen for load event in the window
 window.addEventListener("load", function () {
 
     // initialize stopwatch
     sw.init()
+
+    // initialize twitch
+    twitch.init()
+
+    // add event listener for button clicks on cards
+    let opponentCardsElements = document.querySelectorAll(".opponent-card")
+
+    opponentCardsElements.forEach(cardElement => {
+        cardElement.addEventListener("click", cardButtonHandler, false)
+    });
 
     // not passing title parameter => title defaults to "OVERTHINK"
     new Match(
@@ -118,7 +127,7 @@ function updateTwitchSafeMode() {
 
     twitchSafeMode = document.getElementById("twitchSafeMode-checkbox").checked;
 
-    console.log({twitchSafeMode})
+    console.log({ twitchSafeMode })
 
 }
 
@@ -207,4 +216,30 @@ function shuffle(array) {
             array[randomIndex], array[currentIndex]];
     }
     return array;
+}
+
+function cardButtonHandler(e) {
+    // currentTarget = element attached to event listener (card); target = clicked element (icons are ignored via css)
+    if (e.target != e.currentTarget) {
+
+        // set which card to modify
+        if (e.currentTarget.id == "opponent-card-left") {
+            cardToModify = "left"
+        } else {
+            cardToModify = "right"
+        }
+
+        // execute function based on button id
+
+        clickedId = e.target.id
+        if
+            (clickedId.includes("randomize-opponent")) { randomizeOpponent(cardToModify) }
+        else if
+            (clickedId.includes("randomize-modifier")) { randomizeModifier(cardToModify) }
+        else if
+            (clickedId.includes("clear-modifier")) { clearModifier(cardToModify) }
+
+    }
+    // prevents event to bubble up and trigger other listeners
+    e.stopPropagation();
 }

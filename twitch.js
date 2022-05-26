@@ -1,126 +1,146 @@
 
-const clinetId = ""
-const clinetSecret = ""
+var twitch = {
+    // PROPERTIES
+    isConnected: false, // status of twitch connection
+    connectedTo: null, // channel of connected chat
+    pollIsActive: false,
+    credentials: {
+        clientId: "",
+        secret: ""
+    },
+    commands: {
+        voteLeft: "#1", // default commands: #1 and #2
+        voteRight: "#2"
+    },
 
-var voteLeftCommand = "#1"      // defaults commands: #1 and #2
-var voteRightCommand = "#2"
-var pollActive = false
 
+    init: () => {
+        // GET HTML ELEMENTS
+        twitch.elements = document.getElementsByClassName('twitch');
 
-function getTwitchAuthorization() {
-    let url = `https://id.twitch.tv/oauth2/token?client_id=${clinetId}&client_secret=${clinetSecret}&grant_type=client_credentials`;
+        twitch.connectionButton = document.getElementById("twitch-connection-button");
+        twitch.usernameInput = document.getElementById("twitchUsernameInput");
 
-    return fetch(url, {
-        method: "POST",
-    })
-        .then((res) => res.json())
-        .then((data) => {
-            return data;
-        });
-}
+        twitch.voteLeftInput = document.getElementById("voteLeftCommand-input")
+        twitch.voteRightInput = document.getElementById("voteRightCommand-input")
 
-async function toggleTwitchConnection() {
+        twitch.voteLeftLabel = document.getElementById("twitch-voteLeft-label")
+        twitch.voteRightLabel = document.getElementById("twitch-voteRight-label")
 
-    // init DOM variables
-    let twitchConnectionButtonText = document.getElementById("twitchButtonText")
-    let twitchUsernameInput = document.getElementById("twitchUsernameInput")
-    let twitchElements = document.getElementsByClassName('twitch');
+        // LINK ELEMENTS TO FUNCTIONS
+        twitch.connectionButton.onclick = twitch.connect;
+        twitch.voteLeftInput.onchange = twitch.voteRightInput.onchange = twitch.updateVoteCommands
+    },
 
-    // if twitch is not connected => CONNECT
-    if (!twitchConnection) {
+    connect: () => {
 
-        var twitchUsername = document.getElementById("twitchUsernameInput").value
+        let username = twitch.usernameInput.value
 
         // if input username is null: set text box style as invalid and return
-        if (!twitchUsername) {
-
-            twitchUsernameInput.classList.add('is-invalid');
+        if (!username) {
+            twitch.usernameInput.classList.add('is-invalid');
             return false
         }
 
-        twitchConnectionButtonText.textContent = "CONNECTING"
+        twitch.connectionButton.innerText = "CONNECTING"
 
         // connect to the specified user's chat
-        ComfyJS.Init(twitchUsername)
+        ComfyJS.Init(username)
 
         // when connected event
         ComfyJS.onConnected = async (address, port, isFirstConnect) => {
 
-            twitchConnection = true
+            twitch.isConnected = true
+            twitch.connectedTo = username
 
-            console.log(`Connected to: ${twitchUsername}'s chat`)
+            console.log(`Connected to: ${username}'s chat`)
 
             // set text box style to valid
-            twitchUsernameInput.classList.add("is-valid")
-            twitchUsernameInput.classList.remove('is-invalid');
+            twitch.usernameInput.classList.add("is-valid")
+            twitch.usernameInput.classList.remove('is-invalid');
 
             // actually show twitch-related html elements (= with twitch class)
-            Array.from(twitchElements).forEach(element => {
-                element.classList.remove("collapse")
+            Array.from(twitch.elements).forEach(element => {
+                element.classList.remove("hidden")
             });
 
-            twitchConnectionButtonText.textContent = "DISCONNECT"
+            twitch.connectionButton.onclick = twitch.disconnect;
+            twitch.connectionButton.innerText = "DISCONNECT"
         }
+    },
 
-        // if twitch was already connected => disconnect
-    } else {
+    disconnect: () => {
 
         // generate confirm dialog: CONFIRM = true; CANCEL = false
         if (!confirm("Disconnect from Twitch?")) { return false };
 
         ComfyJS.Disconnect();
 
-        twitchConnection = false
+        console.log(`Disconnected from twitch chat`)
 
+        twitch.isConnected = false
+        twitch.connectedTo = null
 
         // reset text box to default style
-        twitchUsernameInput.classList.remove('is-invalid', 'is-valid')
+        twitch.usernameInput.classList.remove('is-invalid', 'is-valid')
 
-        twitchConnectionButtonText.textContent = "CONNECT"
+        // reset percentage, clear voters, update piechart and reset timer
+        activeMatch.resetPoll()
 
-        // reset stopwatch and twitch poll
-        sw.reset()
-
-        Array.from(twitchElements).forEach(element => {
-            element.classList.add("collapse")
+        // hide twitch related HTML elements
+        Array.from(twitch.elements).forEach(element => {
+            element.classList.add("hidden")
         });
+
+        twitch.connectionButton.onclick = twitch.connect;
+        twitch.connectionButton.innerText = "CONNECT"
+    },
+
+    updateVoteCommands: () => {
+
+        // update twitch object
+        twitch.commands = {
+            voteLeft: twitch.voteLeftInput.value,
+            voteRight: twitch.voteRightInput.value
+        }
+
+        // update displayed commands labels
+        twitch.voteLeftLabel.innerText = twitch.commands.voteLeft
+        twitch.voteRightLabel.innerText = twitch.commands.voteRight
     }
 }
 
-ComfyJS.onError = async (error) => {
+ComfyJS.onError = (error) => {
 
     //TODO: better twitch error handling
 
-    // is it even working??!!
+    // NOT WORKING?
     alert(error);
 }
 
 ComfyJS.onChat = (user, message, flags, self, extra) => {
 
     if (self) { return };
-    if (!pollActive) { return };
+    if (!twitch.pollIsActive) { return };
 
     // ignore users who already voted
     var userAlreadyVoted = activeMatch.voters.right.has(user) || activeMatch.voters.left.has(user)
 
-    if (message.includes(voteLeftCommand) && !userAlreadyVoted) {
+    if (message.includes(twitch.commands.voteLeft) && !userAlreadyVoted) {
         activeMatch.voters.left.add(user)
         updateMatchLeftPercentage()
     }
-    else if (message.includes(voteRightCommand) && !userAlreadyVoted) {
+    else if (message.includes(twitch.commands.voteRight) && !userAlreadyVoted) {
         activeMatch.voters.right.add(user)
         updateMatchLeftPercentage()
     }
-    
 };
 
 
 // fires on chat messages starting with !
 ComfyJS.onCommand = async (user, command, message, flags, extra) => {
-    if (twitchConnection) {
 
-        if (command === "clear") {
-        }
+    if (command === "clear") {
     }
 }
 
@@ -186,5 +206,15 @@ async function getProfilePic(username) {
     }
 
 
+}
+
+async function getTwitchAuthorization() {
+    let url = `https://id.twitch.tv/oauth2/token?client_id=${clinetId}&client_secret=${clinetSecret}&grant_type=client_credentials`;
+
+    const res = await fetch(url, {
+        method: "POST",
+    });
+    const data = await res.json();
+    return data;
 }
 
