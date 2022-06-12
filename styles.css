@@ -50,8 +50,7 @@ button>* {
 }
 
 .title {
-  font-size: clamp(1rem, 5vw, 8rem);
-
+  font-size: clamp(24px, calc(1.5rem + ((1vw - 3.75px) * 1.0356)), 40px);
   text-align: center;
   border: none;
   resize: none;

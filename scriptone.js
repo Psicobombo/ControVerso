@@ -30,6 +30,15 @@ window.addEventListener("load", function () {
     // initialize twitch
     twitch.init()
 
+    // TODO: PER PSICO
+    // add event listener for setting button
+    // let settingButton = document.querySelector("#menu-button");
+    // let settingsModal
+
+    // settingButton.addEventListener("click", function() {
+    //     settingsModal.classList.toggle("active");
+    // })
+
     // add event listener for button clicks on cards
     let opponentCardsElements = document.querySelectorAll(".opponent-card")
 
