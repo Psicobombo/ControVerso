@@ -21,7 +21,7 @@ titles = [
   },
   {
     "label": "Chi è il più gustosetto?",
-    "isTwitchSafe": false
+    "isTwitchSafe": true
   },
   {
     "label": "Chi vince a pugni?",
@@ -72,7 +72,7 @@ titles = [
     "isTwitchSafe": true
   },
   {
-    "label": "Con chi condivideresti la camera da letto per una notte?",
+    "label": "Con chi condividi la camera da letto per una notte?",
     "isTwitchSafe": true
   },
   {
@@ -93,6 +93,38 @@ titles = [
   },
   {
     "label": "Con chi andresti al ballo scolastico?",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Con chi scambi il corpo per 24 ore?",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Con chi preferiresti combattere ?",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Hai un biglietto extra per il concerto dei Sunn O))), con chi vai?",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Una voce divina ti ordina di uccidere, chi scegli?",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Un pellicano entra in casa tua, chi chiami per aiutarti?",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Da chi ti fai spalmare la crema solare sulla schiena?",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Chi vuoi come complice in una rapina?",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Chi è il miglior protagonista di una sitcom poliziesca di Rai1?",
     "isTwitchSafe": true
   }
 ]

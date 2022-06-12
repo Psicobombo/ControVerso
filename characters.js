@@ -42,12 +42,6 @@ characters = [
     "category": "Pokémon"
   },
   {
-    "label": "Mudkip",
-    "url": "https://yt3.ggpht.com/a/AATXAJxCSRSDX6y2AKHSN5VKPe8ozw3PCGzafM71JQ=s900-c-k-c0xffffffff-no-rj-mo",
-    "isTwitchSafe": true,
-    "category": "Pokémon"
-  },
-  {
     "label": "Putin",
     "url": "https://i.imgflip.com/2/rycvi.jpg",
     "isTwitchSafe": false,
@@ -198,7 +192,7 @@ characters = [
     "category": "Fantasia"
   },
   {
-    "label": "Spiderman",
+    "label": "Uomo Ragno",
     "url": "https://vignette.wikia.nocookie.net/marvelmoviesfanon/images/4/40/Spidermanmaguire.png",
     "isTwitchSafe": true,
     "category": "Fantasia"
@@ -281,12 +275,6 @@ characters = [
     "isTwitchSafe": true
   },
   {
-    "label": "Leone (Ferragnez)",
-    "url": "https://www.tpi.it/app/uploads/2019/07/leone.png",
-    "isTwitchSafe": false,
-    "category": "VIP"
-  },
-  {
     "label": "SIUUUUU (CR7)",
     "url": "http://awesome11.com/wp-content/uploads/2016/07/Amazing-Pic-Of-Cristiano-Ronaldo.jpg",
     "isTwitchSafe": true,
@@ -331,12 +319,6 @@ characters = [
   {
     "label": "Platinette",
     "url": "https://media.urbanpost.it/wp-content/uploads/2020/01/platinette-630x329.jpg",
-    "isTwitchSafe": true,
-    "category": "VIP"
-  },
-  {
-    "label": "Mauro Coruzzi",
-    "url": "https://www.sologossip.it/wp-content/uploads/2021/02/Mauro-Coruzzi-SoloGossip.jpg",
     "isTwitchSafe": true,
     "category": "VIP"
   },
@@ -391,7 +373,7 @@ characters = [
   {
     "label": "Poseidone",
     "url": "https://img.didimholiday.com/qluster/gal/thm/GUI/750x5087_c3a630116c.jpg",
-    "isTwitchSafe": false,
+    "isTwitchSafe": true,
     "category": "Fantasia"
   },
   {
@@ -545,9 +527,314 @@ characters = [
     "category": "VIP"
   },
   {
-    "label": "Roberta Sorge (Ckibe)",
-    "url": "https://yt3.ggpht.com/ytc/AKedOLSpCQoyVMuMLSng67koRnhuFY2BV2lQXId3jyewmg=s900-c-k-c0x00ffffff-no-rj",
-    "isTwitchSafe": false,
-    "category": "Streamer"
+    "label": "Piccolo di elefante",
+    "url": "https://www.keblog.it/wp-content/uploads/2018/05/elefantini-elefanti-cuccioli-57.jpg",
+    "isTwitchSafe": true,
+    "category": "Natura"
+  },
+  {
+    "label": "Vampiro Del Discount",
+    "url": "https://conteudo.imguol.com.br/c/colunas/ce/2021/12/02/niccage-abre-1638423805503_v2_3x4.jpg",
+    "isTwitchSafe": true,
+    "category": "Altro"
+  },
+  {
+    "label": "Dracula",
+    "url": "https://www.centropagina.it/wp-content/uploads/2018/10/DRACULA-01.jpg",
+    "isTwitchSafe": true,
+    "category": "Fantasia"
+  },
+  {
+    "label": "Wolverine",
+    "url": "https://www.menshealth.it/files/comuni/images/TW-010_web.jpg",
+    "isTwitchSafe": true,
+    "category": "Fantasia"
+  },
+  {
+    "label": "professor x",
+    "url": "https://anime.icrewplay.com/wp-content/uploads/2018/06/Professor_X.jpg",
+    "isTwitchSafe": true,
+    "category": "Fantasia"
+  },
+  {
+    "label": "Il tuo gatto",
+    "url": "https://www.wallpaperfusion.com/Download/26252/?W=400&H=400",
+    "isTwitchSafe": true,
+    "category": "Natura"
+  },
+  {
+    "label": "La bambola di Squid Game",
+    "url": "https://cdn1.clickthecity.com/wp-content/uploads/2021/09/02134205/Squid-Game-768x432.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Donald Trump",
+    "url": "https://1474092656.rsc.cdn77.org/data/images/full/24072/donald-trump.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Gozzilla",
+    "url": "https://mykaiju.com/wp-content/uploads/g65billiken-thumb.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "John Cena",
+    "url": "https://c4.wallpaperflare.com/wallpaper/1024/27/765/pose-actor-baseball-cap-wrestler-wwe-hd-wallpaper-thumb.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Un pastore sardo",
+    "url": "https://www.circolosarditreviso.it/wp-content/uploads/2013/01/Pastore-Sardo.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Il sindaco di Como",
+    "url": "https://lightstorage.laprovinciadicomo.it/mediaon/cms.quotidiani/storage/site_media/media/photologue/2020/2/25/photos/cache/coronavirus-il-sindaco-di-como-non-venite-in-comune_d5026784-56db-11ea-b33e-3ad02e7ec94b_512_512_new_square_large.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Un sexy pompiere",
+    "url": "http://2.bp.blogspot.com/_6B8tPuW7TwQ/S9_3VgOqB-I/AAAAAAAAQnc/FYF9xUzoCy0/s1600/firepin.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Alieno fatto di energia",
+    "url": "https://media.istockphoto.com/vectors/stock-vector-illustration-ball-lightning-a-transparent-background-vector-id1089782180?k=20&m=1089782180&s=612x612&w=0&h=5414lwbCsjkfjcpRFLtWJpCSr5sxSTCXuiFOHVS51Dk=",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Barack Obama",
+    "url": "https://m.media-amazon.com/images/S/amzn-author-media-prod/k9gtp50b3kj06bikpg230de34c._SX450_.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Giorgio Napolitano nel 1994",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Giorgio_Napolitano_1994.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Shrek",
+    "url": "https://www.leggilo.org/wp-content/uploads/2021/12/shrek-1.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Maria De Filippi",
+    "url": "https://th.bing.com/th/id/R.9b8088886dcd1cc06cb55fa4ed066ef6?rik=zGOyq16LIQv%2fEQ&pid=ImgRaw&r=0&sres=1&sresct=1",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Battiato",
+    "url": "https://www.ragusanews.com/immagini_articoli/26-05-2022/le-quattro-puntate-di-sky-arte-dedicate-a-franco-battiato-500.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Presidente Fininvest",
+    "url": "https://digilander.libero.it/berlusconi.web/photo/04.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Massimo Bossetti",
+    "url": "https://th.bing.com/th/id/R.e463323e1da4d31da918249f0c058b91?rik=6hXYSmJ%2fQptRJA&riu=http%3a%2f%2fwww.giornalettismo.com%2fwp-content%2fuploads%2f2016%2f05%2fmassimo-bossetti-lettere-hard-suicidio.jpg&ehk=J6Lq%2fWBO5pOJzZ3otbzCUe7xcE1UIDzqP2D%2fx1dtaIw%3d&risl=&pid=ImgRaw&r=0",
+    "isTwitchSafe": false
+  },
+  {
+    "label": "Rondo",
+    "url": "https://realrapitaliano.com/wp-content/uploads/2020/06/WhatsApp-Image-2020-06-22-at-19.09.40-696x696.jpeg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Il Pacciani",
+    "url": "https://th.bing.com/th/id/R.2d3eb5763c683da82c4ca7955bc0aae6?rik=FpCXTzr6M%2bQFeg&riu=http%3a%2f%2fmedia.urbanpost.it%2fwp-content%2fuploads%2f2014%2f09%2fPietro-Pacciani-744x445.jpg&ehk=EYJho4yB6ApUu8ROE8%2bTpf8wkK2tS08BsYh5E%2fjDIKo%3d&risl=&pid=ImgRaw&r=0",
+    "isTwitchSafe": false
+  },
+  {
+    "label": "Quentin Tarnatino",
+    "url": "https://th.bing.com/th/id/OIP.qP98sHxSXNv7OvtEK2MvFQAAAA?pid=ImgDet&rs=1",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Buzz Lightyear",
+    "url": "https://th.bing.com/th/id/R.f77d14d2b88972589e9a6fc6c9be1673?rik=FgPKSEwrzJA%2f0Q&pid=ImgRaw&r=0&sres=1&sresct=1",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Lil Pump",
+    "url": "https://th.bing.com/th/id/R.fe7a9e8388a9d272fc9f0b57783e725a?rik=wcg7SPGxNbJiQw&pid=ImgRaw&r=0",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Bello Figo",
+    "url": "https://media.gqitalia.it/photos/5c0668298471578932ee35c0/1:1/w_375%2cc_limit/1486295831_bello-figo.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Alessandra Mussolini",
+    "url": "https://www.lataille.fr/wp-content/uploads/2017/02/Alessandra-Mussolini-734x1024.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "La Torcia Umana",
+    "url": "https://th.bing.com/th/id/R.459a51eb43522e9abf349debe8cd0fa2?rik=H33bHbOzWO4ArQ&pid=ImgRaw&r=0",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "John Lennon",
+    "url": "https://cdn-images-1.medium.com/max/800/1*dvRAUm8Gj3yRA6Yxv-QLng.jpeg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Steve Jobs",
+    "url": "https://www.istmira.com/uploads/posts/2019-04/thumbs/1554680827_richard_brandson_crop-1-copy.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Bill Gates",
+    "url": "https://www.worldhistoryedu.com/wp-content/uploads/2021/03/Bill-Gates-achievements.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Nemo",
+    "url": "https://openpsychometrics.org/tests/characters/test-resources/pics/FN/1.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Il Mostro Della Laguna",
+    "url": "https://th.bing.com/th/id/R.6befadcfddadebc4cee4b6f921028fec?rik=0qmINm9KTUfm%2bQ&riu=http%3a%2f%2fftv01.stbm.it%2fimgbank%2fGALLERYXL%2fR201610%2fmostro13.jpg&ehk=X8q47V5U9XglFf5kHK5K3bzi5KkZUDRKsE8dP9gWu94%3d&risl=&pid=ImgRaw&r=0",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Polifemo",
+    "url": "https://th.bing.com/th/id/R.bf5eb88a7997f17b2ccc8b4063ae353a?rik=fV2V8ipN0V7xog&pid=ImgRaw&r=0&sres=1&sresct=1",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Homer Simpson",
+    "url": "https://upload.wikimedia.org/wikipedia/it/thumb/b/bd/Homer_Simpson.png/520px-Homer_Simpson.png",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Alessandro magno",
+    "url": "https://vridar.org/wp-content/uploads/2019/06/Alexander_the_Great_mosaic_cropped.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Giulio Cesare",
+    "url": "https://cronistoria.altervista.org/wp-content/uploads/2018/09/38918413_308358259739746_5077062750199349248_n.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Mario Giordano",
+    "url": "https://www.silenziefalsita.it/wp-content/uploads/2018/04/mario-giordano-960x576.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Steve (Minecraft)",
+    "url": "http://www.fotolip.com/wp-content/uploads/2016/05/Minecraft-Steve-3.png",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Rey Mysterio",
+    "url": "https://c4.wallpaperflare.com/wallpaper/866/10/400/mask-tattoo-tattoo-wrestler-rey-mysterio-hd-wallpaper-preview.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Emoji Che Ride",
+    "url": "https://images2.corriereobjects.it/methode_image/2016/12/21/Tecnologia/Foto%20Tecnologia%20-%20Trattate/18-kD1D-RqlINL9X8Xzch0rm8AL7oHK-590x445@Corriere-Web-Sezioni.jpg?v=201612211606",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Sherlock Holmes",
+    "url": "https://www.feltrinellieducation.it/media/Sherlock.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Renato Zero",
+    "url": "https://www.movietrainer.com/img/immagini_articoli/2018/03/15/5aaa84cf770f9.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Yoko Ono",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Yoko_Ono_2011_SXSW.jpg/1200px-Yoko_Ono_2011_SXSW.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Thor",
+    "url": "https://images.photowall.com/products/58624/thor-god-of-thunder.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Mago Otelma",
+    "url": "https://www.corriere.it/methode_image/2021/01/07/Spettacoli/Foto%20Spettacoli/divino-otelma_657353_20190508142222-cf-cropped-111-0-849-640.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Tutankhamon",
+    "url": "https://www.ansa.it/webimages/img_457x/2015/10/31/168220a0db63fd668d9df27c3f80f1b9.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Cleo Patra",
+    "url": "https://images2.corriereobjects.it/methode_image/2019/08/13/Moda/Foto%20Moda%20-%20Trattate/4308.0.499715309-kx0C-U313017283145998HI-1224x916@Corriere-Web-Sezioni-593x443.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Mark Zuckerberg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Mark_Zuckerberg_F8_2019_Keynote_%2832830578717%29_%28cropped%29.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Michael Myers",
+    "url": "https://upload.wikimedia.org/wikipedia/en/e/e9/MichaelMyers2018.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Sun Tzu",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/%E5%90%B4%E5%8F%B8%E9%A9%AC%E5%AD%99%E6%AD%A6.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Martin Lutero",
+    "url": "https://www.fattiperlastoria.it/wp-content/uploads/2021/10/Lucas_Cranach_d.A._-_Martin_Luther_1528_Veste_Coburg-scaled-e1633084832174.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Un'otaria da circo",
+    "url": "https://1.bp.blogspot.com/-RU0z8JNp9ps/XDUORXKNNJI/AAAAAAAAlXE/ElaRLMBvkTgebdJFkL2SKIPSm-M10u_GgCLcBGAs/s1600/otarie.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Saetta Mcqueen",
+    "url": "https://www.infomotori.com/content/uploads/2022/03/cars-saetta-lightning-mcqueen-728x415.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Mantide",
+    "url": "https://i.pinimg.com/originals/fc/6c/ef/fc6cef6d7916ebcb94a322ea2eb27ce5.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Il Re Scorpione",
+    "url": "https://upload.wikimedia.org/wikipedia/it/4/42/Il_re_scorpione.png",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Mr Krab",
+    "url": "https://static.wikia.nocookie.net/spongebobenciclopedia/images/0/0d/Krabs.png/revision/latest/scale-to-width-down/147?cb=20150130161303&path-prefix=it",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Chef Remy",
+    "url": "https://lumiere-a.akamaihd.net/v1/images/open-uri20150422-20810-f3qxzs_4923c203.jpeg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Detective Conan",
+    "url": "https://cdn.gingergeneration.it/uploads/2018/07/Detective-Conan.jpg",
+    "isTwitchSafe": true
+  },
+  {
+    "label": "Uomo Ghiaccio",
+    "url": "https://www.writeups.org/wp-content/uploads/Iceman-Spider-Man-Amazing-Friends-Cartoon.jpg",
+    "isTwitchSafe": true
   }
 ]

@@ -24,6 +24,7 @@
     <script src="titles.js"></script>
     <script src="stopwatch.js"></script>
     <script src="match.js"></script>
+    <script src="card.js"></script>
     <script src="scriptone.js"></script>
 
     <title>OVERTHINK</title>
@@ -55,11 +56,11 @@
         <div class="opponent-card" id="opponent-card-left">
 
             <div class="opponent-button-container">
-                <button id="randomize-opponent-left" class="opponent-button left"><span
+                <button id="randomize-opponent-left" class="opponent-button randomize left"><span
                         class="material-icons shuffle-icon">
                         shuffle
                     </span></button>
-                <button id="customize-opponent-left" class="opponent-button left" data-bs-toggle="modal"
+                <button id="customize-opponent-left" class="opponent-button customize left" data-bs-toggle="modal"
                     data-bs-target="#customOpponentModal" onclick="selectedOpponent = 'left'"><span
                         class="material-icons">
                         edit
@@ -83,11 +84,11 @@
 
 
                     <div class="modifier-container-buttons">
-                        <button type="button" id="randomize-modifier-left" class="modifier-button left"
+                        <button type="button" id="randomize-modifier-left" class="modifier-button randomize left"
                             title="Randomizza modificatore"><span class="material-icons shuffle-icon">
                                 shuffle
                             </span></button>
-                        <button type="button" id="clear-modifier-left" class="modifier-button left"
+                        <button type="button" id="clear-modifier-left" class="modifier-button clear left"
                             title="Elimina modificatore"><span class="material-icons">
                                 delete
                             </span></button>
@@ -126,7 +127,7 @@
                 </div>
             </div>
 
-            <div class="hidden twitch-percentages-container" id="twitch-percentages-container">
+            <div class="hidden twitch twitch-percentages-container" id="twitch-percentages-container">
 
                 <div class="twitch-percentage-label left" id="twitch-left-percentage">50%</div>
                 <div class="twitch-percentage-label right" id="twitch-right-percentage">50%</div>
@@ -152,11 +153,11 @@
         <div class="opponent-card" id="opponent-card-right">
 
             <div class="opponent-button-container">
-                <button id="randomize-opponent-right" class="opponent-button right"><span
+                <button id="randomize-opponent-right" class="opponent-button randomize right"><span
                         class="material-icons shuffle-icon">
                         shuffle
                     </span></button>
-                <button id="customize-opponent-right" class="opponent-button right" data-bs-toggle="modal"
+                <button id="customize-opponent-right" class="opponent-button customize right" data-bs-toggle="modal"
                     data-bs-target="#customOpponentModal" onclick="selectedOpponent = 'right'"><span
                         class="material-icons">
                         edit
@@ -179,11 +180,11 @@
                         contenteditable="true" spellcheck="false" rows="3"></textarea>
 
                     <div class="modifier-container-buttons">
-                        <button id="randomize-modifier-right" class="modifier-button right"
+                        <button id="randomize-modifier-right" class="modifier-button randomize right"
                             title="Randomizza modificatore"><span class="material-icons shuffle-icon">
                                 shuffle
                             </span></button>
-                        <button id="clear-modifier-right" class="modifier-button right"
+                        <button id="clear-modifier-right" class="modifier-button clear right"
                             title="Elimina modificatore"><span class="material-icons">
                                 delete
                             </span></button>
@@ -219,8 +220,8 @@
 
                         <div class="color-picker-container">
 
-                            <input type="color" id="color-picker-left" onchange="updateCustomColors()" value="#ff00b1">
-                            <input type="color" id="color-picker-right" onchange="updateCustomColors()" value="#8cc63f">
+                            <input type="color" id="color-picker-left" onchange="settings.colors.update()" value="#ff00b1">
+                            <input type="color" id="color-picker-right" onchange="settings.colors.update()" value="#8cc63f">
 
                         </div>
 

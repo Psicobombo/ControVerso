@@ -1,4 +1,4 @@
-var sw = {
+const sw = {
     // PROPERTIES
     etime : null, // html time display
     erst : null, // html reset button

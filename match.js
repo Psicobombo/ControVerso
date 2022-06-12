@@ -3,13 +3,17 @@ class Match {
         this.leftOpponent = character1
         this.rightOpponent = character2
         this.title =  title
-        this.leftPercentage = 0.5
         this.voters = {
             left: new Set(),
             right: new Set()
         }
 
         this.display()
+    }
+
+    get leftPercentage() {
+
+        return this.voters.left.size / (this.voters.left.size + this.voters.right.size) || 0.5
     }
 
 
@@ -40,7 +44,6 @@ class Match {
 
     resetPoll() {
 
-        this.leftPercentage = 0.5
         this.voters.left.clear()
         this.voters.right.clear()
 

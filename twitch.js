@@ -1,6 +1,5 @@
-
-var twitch = {
-    // PROPERTIES
+const twitch = {
+    
     isConnected: false, // status of twitch connection
     connectedTo: null, // channel of connected chat
     pollIsActive: false,
@@ -8,15 +7,45 @@ var twitch = {
         clientId: "",
         secret: ""
     },
+
     commands: {
+
         voteLeft: "#1", // default commands: #1 and #2
-        voteRight: "#2"
+        voteRight: "#2",
+
+        update() {
+            // update twitch object
+            this.voteLeft = twitch.voteLeftInput.value || "#1"
+            this.voteRight = twitch.voteRightInput.value || "#2"
+
+
+            // update displayed commands labels
+            twitch.voteLeftLabel.innerText = this.voteLeft
+            twitch.voteRightLabel.innerText = this.voteRight
+        }
+    },
+
+    elements: {
+
+        nodeList: null,
+
+        show() {
+            Array.from(twitch.elements.nodeList).forEach(element => {
+                element.classList.remove("hidden")
+            });
+        },
+
+        hide() {
+            Array.from(twitch.elements.nodeList).forEach(element => {
+                element.classList.add("hidden")
+            });
+        }
     },
 
 
-    init: () => {
+    init() {
         // GET HTML ELEMENTS
-        twitch.elements = document.getElementsByClassName('twitch');
+        twitch.elements.nodeList = document.getElementsByClassName('twitch');
 
         twitch.connectionButton = document.getElementById("twitch-connection-button");
         twitch.usernameInput = document.getElementById("twitchUsernameInput");
@@ -29,16 +58,16 @@ var twitch = {
 
         // LINK ELEMENTS TO FUNCTIONS
         twitch.connectionButton.onclick = twitch.connect;
-        twitch.voteLeftInput.onchange = twitch.voteRightInput.onchange = twitch.updateVoteCommands
+        twitch.voteLeftInput.onchange = twitch.voteRightInput.onchange = twitch.commands.update
     },
 
-    connect: () => {
+    connect() {
 
         let username = twitch.usernameInput.value
 
         // if input username is null: set text box style as invalid and return
         if (!username) {
-            twitch.usernameInput.classList.add('is-invalid');
+            setInvalidStyle(twitch.usernameInput);
             return false
         }
 
@@ -56,20 +85,18 @@ var twitch = {
             console.log(`Connected to: ${username}'s chat`)
 
             // set text box style to valid
-            twitch.usernameInput.classList.add("is-valid")
-            twitch.usernameInput.classList.remove('is-invalid');
+            setValidStyle(twitch.usernameInput);
 
             // actually show twitch-related html elements (= with twitch class)
-            Array.from(twitch.elements).forEach(element => {
-                element.classList.remove("hidden")
-            });
+            twitch.elements.show()
+
 
             twitch.connectionButton.onclick = twitch.disconnect;
             twitch.connectionButton.innerText = "DISCONNECT"
         }
     },
 
-    disconnect: () => {
+    disconnect() {
 
         // generate confirm dialog: CONFIRM = true; CANCEL = false
         if (!confirm("Disconnect from Twitch?")) { return false };
@@ -88,27 +115,14 @@ var twitch = {
         activeMatch.resetPoll()
 
         // hide twitch related HTML elements
-        Array.from(twitch.elements).forEach(element => {
-            element.classList.add("hidden")
-        });
+        twitch.elements.hide()
 
         twitch.connectionButton.onclick = twitch.connect;
         twitch.connectionButton.innerText = "CONNECT"
     },
 
-    updateVoteCommands: () => {
+};
 
-        // update twitch object
-        twitch.commands = {
-            voteLeft: twitch.voteLeftInput.value,
-            voteRight: twitch.voteRightInput.value
-        }
-
-        // update displayed commands labels
-        twitch.voteLeftLabel.innerText = twitch.commands.voteLeft
-        twitch.voteRightLabel.innerText = twitch.commands.voteRight
-    }
-}
 
 ComfyJS.onError = (error) => {
 
@@ -128,11 +142,11 @@ ComfyJS.onChat = (user, message, flags, self, extra) => {
 
     if (message.includes(twitch.commands.voteLeft) && !userAlreadyVoted) {
         activeMatch.voters.left.add(user)
-        updateMatchLeftPercentage()
+        updatePieChart()
     }
     else if (message.includes(twitch.commands.voteRight) && !userAlreadyVoted) {
         activeMatch.voters.right.add(user)
-        updateMatchLeftPercentage()
+        updatePieChart()
     }
 };
 

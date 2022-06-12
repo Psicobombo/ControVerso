@@ -1,7 +1,25 @@
 var activeMatch = false
 var endedMatches = []
 var selectedOpponent
-var twitchSafeMode = false
+
+const settings = {
+    twitchSafeMode: false,
+    colors: {
+        left: '#ff00b1',
+        right: '#8cc63f',
+
+        update() {
+            this.left = document.getElementById("color-picker-left").value
+            this.right = document.getElementById("color-picker-right").value
+
+            let r = document.querySelector(':root');
+            r.style.setProperty('--left-primary', this.left);
+            r.style.setProperty('--right-primary', this.right);
+        }
+    }
+
+
+}
 
 // listen for load event in the window
 window.addEventListener("load", function () {
@@ -58,7 +76,7 @@ function randomizeTitle() {
 
 function randomizeModifier(id) {
 
-    modifierElement = id == "left" ? document.getElementById("modifier-left") : document.getElementById("modifier-right")
+    modifierElement = id === "left" ? document.getElementById("modifier-left") : document.getElementById("modifier-right")
 
     currentModifier = modifierElement.value
 
@@ -74,7 +92,7 @@ function randomizeModifier(id) {
 
 function clearModifier(id) {
 
-    modifierElement = id == "left" ? document.getElementById("modifier-left") : document.getElementById("modifier-right")
+    modifierElement = id === "left" ? document.getElementById("modifier-left") : document.getElementById("modifier-right")
     modifierElement.value = ""
 }
 
@@ -103,7 +121,7 @@ function customizeOpponent() {
 
     inputURL = document.getElementById("opponentUrlInput").value
 
-    if (selectedOpponent == "left") {
+    if (selectedOpponent === "left") {
         document.getElementById("vs-participant-left").src = inputURL
     } else {
         document.getElementById("vs-participant-right").src = inputURL
@@ -112,30 +130,23 @@ function customizeOpponent() {
 
 function getValidRandom(array) {
 
-    // returns random element from parsed array && checks if element is twitch safe
+    // returns random element from parsed array && if needed checks if element is twitch safe
 
     do {
 
         randomElement = array[Math.floor(Math.random() * array.length)]
 
-    } while (twitchSafeMode && !randomElement.isTwitchSafe);   //if twitchSafeMode is enabled make sure element is twitch friendly 
+    } while (settings.twitchSafeMode && !randomElement.isTwitchSafe);   //if twitchSafeMode is enabled make sure element is twitch friendly 
 
     return randomElement;
 }
 
 function updateTwitchSafeMode() {
 
-    twitchSafeMode = document.getElementById("twitchSafeMode-checkbox").checked;
+    settings.twitchSafeMode = document.getElementById("twitchSafeMode-checkbox").checked;
 
-    console.log({ twitchSafeMode })
+    console.log(settings.twitchSafeMode)
 
-}
-
-function updateMatchLeftPercentage() {
-
-    // Calculate left percentage as: leftVotes/TotalVotes & update match object
-    activeMatch.leftPercentage = activeMatch.voters.left.size / (activeMatch.voters.left.size + activeMatch.voters.right.size)
-    updatePieChart()
 }
 
 function updatePieChart() {
@@ -187,17 +198,6 @@ function updateMatchData() {
     activeMatch.rightOpponent.label = document.getElementById("opponent-label-right").innerText
 }
 
-function updateCustomColors() {
-
-    let customLeftColor = document.getElementById("color-picker-left").value
-    let customRightColor = document.getElementById("color-picker-right").value
-
-    let r = document.querySelector(':root');
-    r.style.setProperty('--left-primary', customLeftColor);
-    r.style.setProperty('--right-primary', customRightColor);
-
-}
-
 function shuffle(array) {
 
     // https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
@@ -223,7 +223,7 @@ function cardButtonHandler(e) {
     if (e.target != e.currentTarget) {
 
         // set which card to modify
-        if (e.currentTarget.id == "opponent-card-left") {
+        if (e.currentTarget.id === "opponent-card-left") {
             cardToModify = "left"
         } else {
             cardToModify = "right"
@@ -242,4 +242,16 @@ function cardButtonHandler(e) {
     }
     // prevents event to bubble up and trigger other listeners
     e.stopPropagation();
+}
+
+function setValidStyle(HTMLelement) {
+
+    HTMLelement.classList.remove('is-invalid');
+    HTMLelement.classList.add("is-valid")
+}
+
+function setInvalidStyle(HTMLelement) {
+
+    HTMLelement.classList.remove('is-valid');
+    HTMLelement.classList.add("is-invalid")
 }
