@@ -39,6 +39,8 @@ window.addEventListener("load", function () {
 
     settingsModal.init()
 
+    customCharacterModal.init()
+
     // add event listener for button clicks on cards
     let characterCardsElements = document.querySelectorAll(".character-card")
 
@@ -128,7 +130,7 @@ function randomizeCharacter(id) {
 
 function customizeCharacter() {
 
-    inputURL = document.getElementById("characterUrlInput").value
+    inputURL = document.getElementById("customImage-input").value
 
     if (selectedCard === "left") {
         document.getElementById("vs-participant-left").src = inputURL
@@ -227,20 +229,23 @@ function cardButtonHandler(e) {
 
         // set which card to modify
         if (e.currentTarget.id === "character-card-left") {
-            cardToModify = "left"
+            selectedCard = "left"
         } else {
-            cardToModify = "right"
+            selectedCard = "right"
         }
 
         // execute function based on button id
 
         clickedId = e.target.id
         if
-            (clickedId.includes("randomize-character")) { randomizeCharacter(cardToModify) }
+            (clickedId.includes("randomize-character")) { randomizeCharacter(selectedCard) }
         else if
-            (clickedId.includes("randomize-modifier")) { randomizeModifier(cardToModify) }
+            (clickedId.includes("customize-character")) { customCharacterModal.toggleVisibility()}
         else if
-            (clickedId.includes("clear-modifier")) { clearModifier(cardToModify) }
+            (clickedId.includes("randomize-modifier")) { randomizeModifier(selectedCard) }
+        else if
+            (clickedId.includes("clear-modifier")) { clearModifier(selectedCard) }
+
 
     }
     // prevents event to bubble up and trigger other listeners
@@ -254,7 +259,7 @@ const settingsModal = {
     init() {
 
         this.element = document.getElementById("settings-modal"),
-        this.element.addEventListener("click", settingsModal.clickHandler, false)
+            this.element.addEventListener("click", settingsModal.clickHandler, false)
 
         this.openButton = document.getElementById("settings-button");
         this.openButton.addEventListener("click", settingsModal.toggleVisibility, false);
@@ -264,30 +269,63 @@ const settingsModal = {
 
     clickHandler(e) {
 
-    // process clicks if inside the dialog
-    if (e.target != e.currentTarget) {
+        // process clicks if inside the dialog
+        if (e.target != e.currentTarget) {
 
-        // execute function based on button id
-        clickedId = e.target.id
-        if
-            (clickedId.includes("close-button")) { settingsModal.toggleVisibility() }
-        else if
-            (clickedId.includes("twitchSafeMode-checkbox")) { settings.updateTwitchSafeMode() }
+            // execute function based on button id
+            clickedId = e.target.id
+            if
+                (clickedId.includes("close-button")) { settingsModal.toggleVisibility() }
+            else if
+                (clickedId.includes("twitchSafeMode-checkbox")) { settings.updateTwitchSafeMode() }
 
-    } else {settingsModal.toggleVisibility()} // closes the modal if click is not in the modal-dialog
-    
-    // prevents event to bubble up and trigger other listeners
-    e.stopPropagation();
+        } else { settingsModal.toggleVisibility() } // closes the modal if click is not in the modal-dialog
+
+        // prevents event to bubble up and trigger other listeners
+        e.stopPropagation();
     },
 
     toggleVisibility() {
         settingsModal.element.classList.toggle("hidden")
     }
+}
 
+const customCharacterModal = {
+    element: null,
 
+    init() {
 
+        this.element = document.getElementById("customCharacter-modal")
+        this.element.addEventListener("click", customCharacterModal.clickHandler, false)
 
+        this.previewImage = document.getElementById("characterPreview")
 
+        this.customImageInput = document.getElementById("customImage-input")
+        this.customImageInput.oninput = () => this.previewImage.src = this.customImageInput.value
+
+    },
+
+    clickHandler(e) {
+
+        // process clicks if inside the dialog
+        if (e.target != e.currentTarget) {
+
+            // execute function based on button id
+            clickedId = e.target.id
+            if
+                (clickedId.includes("close-button")) { customCharacterModal.toggleVisibility() }
+            else if
+                (clickedId.includes("twitchSafeMode-checkbox")) { settings.updateTwitchSafeMode() }
+
+        } else { customCharacterModal.toggleVisibility() } // closes the modal if click is not in the modal-dialog
+
+        // prevents event to bubble up and trigger other listeners
+        e.stopPropagation();
+    },
+
+    toggleVisibility() {
+        customCharacterModal.element.classList.toggle("hidden")
+    }
 }
 
 function setValidStyle(HTMLelement) {
