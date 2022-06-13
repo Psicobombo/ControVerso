@@ -221,7 +221,7 @@ function shuffle(array) {
 
 function cardButtonHandler(e) {
 
-    //TODO: put it in card class
+    //TODO: put it in card class once ready
 
     // currentTarget = element attached to event listener (card); target = clicked element (icons are ignored via css)
     if (e.target != e.currentTarget) {
@@ -263,8 +263,8 @@ const settingsModal = {
         this.openButton = document.getElementById("settings-button");
         this.openButton.addEventListener("click", settingsModal.toggleVisibility, false);
 
-        document.getElementById("color-picker-left").onchange = () => settings.colors.update()
-        document.getElementById("color-picker-right").onchange = () => settings.colors.update()
+        document.getElementById("color-picker-left").onchange = settings.colors.update
+        document.getElementById("color-picker-right").onchange = settings.colors.update
     },
 
     clickHandler(e) {

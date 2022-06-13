@@ -29,16 +29,11 @@ const twitch = {
 
         nodeList: null,
 
-        show() {
+        toggleVisibility() {
             Array.from(twitch.elements.nodeList).forEach(element => {
-                element.classList.remove("hidden")
+                element.classList.toggle("hidden")
             });
-        },
 
-        hide() {
-            Array.from(twitch.elements.nodeList).forEach(element => {
-                element.classList.add("hidden")
-            });
         }
     },
 
@@ -88,7 +83,7 @@ const twitch = {
             setValidStyle(twitch.usernameInput);
 
             // actually show twitch-related html elements (= with twitch class)
-            twitch.elements.show()
+            twitch.elements.toggleVisibility()
 
 
             twitch.connectionButton.onclick = twitch.disconnect;
@@ -115,7 +110,7 @@ const twitch = {
         activeMatch.resetPoll()
 
         // hide twitch related HTML elements
-        twitch.elements.hide()
+        twitch.elements.toggleVisibility()
 
         twitch.connectionButton.onclick = twitch.connect;
         twitch.connectionButton.innerText = "CONNECT"
