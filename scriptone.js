@@ -1,9 +1,13 @@
 var activeMatch = false
 var endedMatches = []
-var selectedOpponent
+var selectedCard
 
 const settings = {
     twitchSafeMode: false,
+    updateTwitchSafeMode() {
+        settings.twitchSafeMode = document.getElementById("twitchSafeMode-checkbox").checked;
+        console.log(`Twitch Safe Mode: ${settings.twitchSafeMode}`)
+    },
     colors: {
         left: '#ff00b1',
         right: '#8cc63f',
@@ -32,17 +36,13 @@ window.addEventListener("load", function () {
 
     // TODO: PER PSICO
     // add event listener for setting button
-    // let settingButton = document.querySelector("#menu-button");
-    // let settingsModal
 
-    // settingButton.addEventListener("click", function() {
-    //     settingsModal.classList.toggle("active");
-    // })
+    settingsModal.init()
 
     // add event listener for button clicks on cards
-    let opponentCardsElements = document.querySelectorAll(".opponent-card")
+    let characterCardsElements = document.querySelectorAll(".character-card")
 
-    opponentCardsElements.forEach(cardElement => {
+    characterCardsElements.forEach(cardElement => {
         cardElement.addEventListener("click", cardButtonHandler, false)
     });
 
@@ -111,26 +111,26 @@ function resetModifiers() {
     clearModifier("right")
 }
 
-function randomizeOpponent(id) {
+function randomizeCharacter(id) {
 
     updateMatchData()
 
     if (id === "left") {
-        activeMatch.leftOpponent = getValidRandom(characters)
+        activeMatch.leftCharacter = getValidRandom(characters)
 
     } else {
-        activeMatch.rightOpponent = getValidRandom(characters)
+        activeMatch.rightCharacter = getValidRandom(characters)
     }
 
     activeMatch.display()
     activeMatch.resetPoll()
 }
 
-function customizeOpponent() {
+function customizeCharacter() {
 
-    inputURL = document.getElementById("opponentUrlInput").value
+    inputURL = document.getElementById("characterUrlInput").value
 
-    if (selectedOpponent === "left") {
+    if (selectedCard === "left") {
         document.getElementById("vs-participant-left").src = inputURL
     } else {
         document.getElementById("vs-participant-right").src = inputURL
@@ -150,13 +150,7 @@ function getValidRandom(array) {
     return randomElement;
 }
 
-function updateTwitchSafeMode() {
 
-    settings.twitchSafeMode = document.getElementById("twitchSafeMode-checkbox").checked;
-
-    console.log(settings.twitchSafeMode)
-
-}
 
 function updatePieChart() {
 
@@ -194,17 +188,17 @@ function updateMatchData() {
 
     // update left card image
     let leftImage = document.getElementById("vs-participant-left")
-    activeMatch.leftOpponent.url = leftImage.src
+    activeMatch.leftCharacter.url = leftImage.src
 
     // update left card label
-    activeMatch.leftOpponent.label = document.getElementById("opponent-label-left").innerText
+    activeMatch.leftCharacter.label = document.getElementById("character-label-left").innerText
 
     // update right card image
     let rightImage = document.getElementById("vs-participant-right")
-    activeMatch.rightOpponent.url = rightImage.src
+    activeMatch.rightCharacter.url = rightImage.src
 
     // update right card label
-    activeMatch.rightOpponent.label = document.getElementById("opponent-label-right").innerText
+    activeMatch.rightCharacter.label = document.getElementById("character-label-right").innerText
 }
 
 function shuffle(array) {
@@ -232,7 +226,7 @@ function cardButtonHandler(e) {
     if (e.target != e.currentTarget) {
 
         // set which card to modify
-        if (e.currentTarget.id === "opponent-card-left") {
+        if (e.currentTarget.id === "character-card-left") {
             cardToModify = "left"
         } else {
             cardToModify = "right"
@@ -242,7 +236,7 @@ function cardButtonHandler(e) {
 
         clickedId = e.target.id
         if
-            (clickedId.includes("randomize-opponent")) { randomizeOpponent(cardToModify) }
+            (clickedId.includes("randomize-character")) { randomizeCharacter(cardToModify) }
         else if
             (clickedId.includes("randomize-modifier")) { randomizeModifier(cardToModify) }
         else if
@@ -251,6 +245,49 @@ function cardButtonHandler(e) {
     }
     // prevents event to bubble up and trigger other listeners
     e.stopPropagation();
+}
+
+
+const settingsModal = {
+    element: null,
+
+    init() {
+
+        this.element = document.getElementById("settings-modal"),
+        this.element.addEventListener("click", settingsModal.clickHandler, false)
+
+        this.openButton = document.getElementById("settings-button");
+        this.openButton.addEventListener("click", settingsModal.toggleVisibility, false);
+
+        document.querySelectorAll(".color-picker").onchange = settings.colors.update()
+    },
+
+    clickHandler(e) {
+
+    // process clicks if inside the dialog
+    if (e.target != e.currentTarget) {
+
+        // execute function based on button id
+        clickedId = e.target.id
+        if
+            (clickedId.includes("close-button")) { settingsModal.toggleVisibility() }
+        else if
+            (clickedId.includes("twitchSafeMode-checkbox")) { settings.updateTwitchSafeMode() }
+
+    } else {settingsModal.toggleVisibility()} // closes the modal if click is not in the modal-dialog
+    
+    // prevents event to bubble up and trigger other listeners
+    e.stopPropagation();
+    },
+
+    toggleVisibility() {
+        settingsModal.element.classList.toggle("hidden")
+    }
+
+
+
+
+
 }
 
 function setValidStyle(HTMLelement) {

@@ -122,23 +122,25 @@ button>* {
 }
 
 .modal {
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1055;
-  display: none;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   outline: 0;
+  background-color: rgba(0,0,0,.5);
 }
 
-.modal-content {
+.modal-dialog {
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	width: auto;
+	width: fit-content;
+  height: fit-content;
   max-width: 500px;
   margin: 1.75rem auto;
 	pointer-events: auto;
@@ -323,7 +325,7 @@ button>* {
   }
 }
 
-.opponent-card {
+.character-card {
   display: flex;
   flex-direction: column;
   width: 20%;
@@ -337,12 +339,12 @@ button>* {
   transition: all 0.4s ease 0.1s;
 }
 
-.opponent-card:hover {
+.character-card:hover {
   transform: scale(1.1);
   box-shadow: 0 0 50px 15px black;
 }
 
-.opponent-card-description {
+.character-card-description {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -353,7 +355,7 @@ button>* {
 }
 
 
-.opponent-label {
+.character-label {
   font-family: Helvetica;
   text-align: center;
   font-size: clamp(1rem, 1.3vw, 5rem);
@@ -447,7 +449,7 @@ button>* {
   background-color: black;
 }
 
-.opponent-img {
+.character-img {
   object-fit: cover;
   background-color: white;
   width: 100%;
@@ -458,12 +460,12 @@ button>* {
   margin: 0;
 }
 
-.opponent-card:hover .opponent-button-container {
+.character-card:hover .character-button-container {
   visibility: visible;
   opacity: 100%;
 }
 
-.opponent-button-container {
+.character-button-container {
 
   display: flex;
   height: 6.5%;
@@ -482,7 +484,7 @@ button>* {
   transition: visibility 0s, opacity 0.2s linear;
 }
 
-.opponent-button {
+.character-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -495,11 +497,11 @@ button>* {
   transition: all 0.3s ease 0s;
 }
 
-.opponent-button:hover {
+.character-button:hover {
   background-color: black;
 }
 
-#opponentPreview {
+#characterPreview {
   border: black 2px solid;
   border-radius: 4px;
   height: 40px;

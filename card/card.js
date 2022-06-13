@@ -30,6 +30,35 @@ class Card {
         this.elements.randomizeModifierButton.onclick = this.randomizeModifier
         this.elements.randomizeCharacterButton.onclick = this.randomizeCharacter
         this.elements.customizeCharacterButton.onclick = this.customizeCharacter
+
+        document.getElementById(this.HTMLid).addEventListener("click", this.clickHandler(e), false)
+    }
+
+    clickHandler(e) {
+        // currentTarget = element attached to event listener (card); target = clicked element (icons are ignored via css)
+    if (e.target != e.currentTarget) {
+
+        // set which card to modify
+        if (e.currentTarget.id === "opponent-card-left") {
+            cardToModify = "left"
+        } else {
+            cardToModify = "right"
+        }
+
+        // execute function based on button id
+
+        clickedId = e.target.id
+        if
+            (clickedId.includes("randomize-opponent")) { this.randomizeCharacter() }
+        else if
+            (clickedId.includes("randomize-modifier")) { this.randomizeModifier() }
+        else if
+            (clickedId.includes("clear-modifier")) { this.clearModifier() }
+
+    }
+    // prevents event to bubble up and trigger other listeners
+    e.stopPropagation();
+
     }
 
     /**

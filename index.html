@@ -36,7 +36,7 @@
                     shuffle
                 </span></button>
 
-            <button class="settings-button" id="menu-button" type="button" data-bs-toggle="modal"
+            <button class="settings-button" id="settings-button" type="button" data-bs-toggle="modal"
                 data-bs-target="#menuModal"><span class="material-icons settings-icon">settings</span></button>
         </div>
     </div>
@@ -44,25 +44,25 @@
 
     <div class="match-container">
 
-        <div class="opponent-card" id="opponent-card-left">
+        <div class="character-card" id="character-card-left">
 
-            <div class="opponent-button-container">
-                <button id="randomize-opponent-left" class="opponent-button randomize left"><span
+            <div class="character-button-container">
+                <button id="randomize-character-left" class="character-button randomize left"><span
                         class="material-icons shuffle-icon">
                         shuffle
                     </span></button>
-                <button id="customize-opponent-left" class="opponent-button customize left" data-bs-toggle="modal"
-                    data-bs-target="#customOpponentModal" onclick="selectedOpponent = 'left'"><span
+                <button id="customize-character-left" class="character-button customize left" data-bs-toggle="modal"
+                    data-bs-target="#customcharacterModal" onclick="selectedcharacter = 'left'"><span
                         class="material-icons">
                         edit
                     </span></button>
             </div>
 
-            <img class="opponent-img" id="vs-participant-left" src="">
+            <img class="character-img" id="vs-participant-left" src="">
 
-            <div class="opponent-card-description" id="opponent-card-description-left">
+            <div class="character-card-description" id="character-card-description-left">
 
-                <span class="opponent-label left" id="opponent-label-left" contenteditable="true"
+                <span class="character-label left" id="character-label-left" contenteditable="true"
                     spellcheck="false">PERSONAGGIO SINISTRA</span>
 
                 <div class="modifier-container" id="modifier-container-left">
@@ -141,25 +141,25 @@
         </div>
 
 
-        <div class="opponent-card" id="opponent-card-right">
+        <div class="character-card" id="character-card-right">
 
-            <div class="opponent-button-container">
-                <button id="randomize-opponent-right" class="opponent-button randomize right"><span
+            <div class="character-button-container">
+                <button id="randomize-character-right" class="character-button randomize right"><span
                         class="material-icons shuffle-icon">
                         shuffle
                     </span></button>
-                <button id="customize-opponent-right" class="opponent-button customize right" data-bs-toggle="modal"
-                    data-bs-target="#customOpponentModal" onclick="selectedOpponent = 'right'"><span
+                <button id="customize-character-right" class="character-button customize right" data-bs-toggle="modal"
+                    data-bs-target="#customcharacterModal" onclick="selectedcharacter = 'right'"><span
                         class="material-icons">
                         edit
                     </span></button>
             </div>
 
-            <img class="opponent-img" id="vs-participant-right" src="">
+            <img class="character-img" id="vs-participant-right" src="">
 
-            <div class="opponent-card-description" id="opponent-card-description-right">
+            <div class="character-card-description" id="character-card-description-right">
 
-                <span class="right opponent-label" onchange="updateMatchData()" id="opponent-label-right"
+                <span class="right character-label" onchange="updateMatchData()" id="character-label-right"
                     contenteditable="true" spellcheck="false">PERSONAGGIO DESTRA</span>
 
                 <div class="modifier-container" id="modifier-container-right">
@@ -190,84 +190,68 @@
 
 
     <!-- Settings Modal -->
-    <div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal hidden" id="settings-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="menueModalLabel">Options</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+            <div class="modal-header">
+                <h2 class="modal-title">Settings</h2>
+                <button type="button" class="btn-close" id="settingsModal-close-button">×</button>
+            </div>
+            <div class="modal-body">
 
-                    <div class="options-container" id="generalOptions-container">
+                <div class="options-container" id="generalOptions-container">
 
-                        <div class="twitchSafeMode-container">
+                    <div class="twitchSafeMode-container">
 
-                            <input type="checkbox" class="twitch-safeMode-checkbox" id="twitchSafeMode-checkbox"
-                                name="twitchSafeMode-checkbox" onclick="updateTwitchSafeMode()" value="false">
-                            <label for="twitchSafeMode-checkbox"> Twitch Safe Mode</label><br>
-
-                        </div>
-
-                        <div class="color-picker-container">
-
-                            <input type="color" id="color-picker-left" onchange="settings.colors.update()" value="#ff00b1">
-                            <input type="color" id="color-picker-right" onchange="settings.colors.update()" value="#8cc63f">
-
-                        </div>
+                        <input type="checkbox" class="twitch-safeMode-checkbox" id="twitchSafeMode-checkbox"
+                            name="twitchSafeMode-checkbox" value="false">
+                        <label for="twitchSafeMode-checkbox"> Twitch Safe Mode</label><br>
 
                     </div>
 
-                    <div class="twitch-options-container" id="twitch-options-container">
+                    <div class="color-picker-container">
 
-                        <div class="twitch-username-container">
+                        <input type="color" class="color-picker" id="color-picker-left"
+                            onchange="settings.colors.update()" value="#ff00b1">
+                        <input type="color" class="color-picker" id="color-picker-right"
+                            onchange="settings.colors.update()" value="#8cc63f">
 
-                            <input type="text" class="form-control" id="twitchUsernameInput"
-                                placeholder="Twitch username">
-                            <div class="invalid-feedback"></div>
-
-                            <button class="twitch-connection-button" type="button"
-                                id="twitch-connection-button"> CONNECT
-                            </button>
-
-                        </div>
-
-                        <div class="twitch hidden twitch-extra-options" id="twitch-extra-options">
-
-                            <form class="form-floating">
-                                <input type="text" class="form-control twitch-vote-command" id="voteLeftCommand-input"
-                                    placeholder="#1">
-                                <div class="invalid-feedback">
-                                    Invalid command
-                                </div>
-                                <label for="voteLeftCommand-input">Vote left alias</label>
-                            </form>
-
-                            <form class="form-floating">
-                                <input type="text" class="form-control twitch-vote-command" id="voteRightCommand-input"
-                                    placeholder="#2">
-                                <div class="invalid-feedback">
-                                    Invalid command
-                                </div>
-                                <label for="voteRightCommand-input">Vote right alias</label>
-                            </form>
-
-                        </div>
                     </div>
 
-
                 </div>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <div class="twitch-options-container" id="twitch-options-container">
+
+                    <div class="twitch-username-container">
+
+                        <input type="text" class="form-control" id="twitchUsernameInput" placeholder="Twitch username">
+                        <div class="invalid-feedback"></div>
+
+                        <button class="twitch-connection-button" type="button" id="twitch-connection-button"> CONNECT
+                        </button>
+
+                    </div>
+
+                    <div class="twitch hidden twitch-extra-options" id="twitch-extra-options">
+                        <input type="text" class="form-control twitch-vote-command" id="voteLeftCommand-input"
+                            placeholder="#1">
+                        <input type="text" class="form-control twitch-vote-command" id="voteRightCommand-input"
+                            placeholder="#2">
+                    </div>
                 </div>
+
+
+            </div>
+
+            <div class="modal-footer">
             </div>
         </div>
+
     </div>
 
 
-    <!-- Custom Opponent Modal -->
-    <div class="modal fade" id="customOpponentModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    <!-- Custom character Modal -->
+    <div class="modal hidden" id="customcharacterModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -277,15 +261,15 @@
                 </div>
                 <div class="modal-body">
                     <form class="form-floating">
-                        <input type="url" class="form-control" id="opponentUrlInput"
-                            oninput="document.getElementById('opponentPreview').src = this.value"
+                        <input type="url" class="form-control" id="characterUrlInput"
+                            oninput="document.getElementById('characterPreview').src = this.value"
                             placeholder="URL dell'immagine">
-                        <label for="opponentUrlInput">URL dell'immagine</label>
+                        <label for="characterUrlInput">URL dell'immagine</label>
                     </form>
-                    <img id="opponentPreview" src="" onerror="">
+                    <img id="characterPreview" src="" onerror="">
 
 
-                    <button class="confirmCustomOpponentButton" onclick="customizeOpponent()">SELECT</button>
+                    <button class="confirmCustomcharacterButton" onclick="customizecharacter()">SELECT</button>
 
 
 
