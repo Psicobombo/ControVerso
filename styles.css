@@ -165,8 +165,7 @@ button>* {
 }
 
 .modal-title {
-	margin-bottom: 0;
-	line-height: 1.5;
+  margin: 0;
 }
 
 .modal-close-button {
@@ -179,6 +178,14 @@ button>* {
     border: 0;
     border-radius: .25rem;
     opacity: .5;
+}
+
+.modal-close-button:hover { 
+
+  opacity: 1;
+
+  transition: opacity 0.3s;
+
 }
 
 .modal-body {
@@ -251,10 +258,6 @@ button>* {
 
   max-width: 16ch;
   height: 2.5rem;
-}
-
-.invalid-feedback {
-  width: 0% !important;
 }
 
 .twitch-connection-button {

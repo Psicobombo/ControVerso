@@ -195,7 +195,7 @@
         <div class="modal-dialog">
             <div class="modal-header">
                 <h2 class="modal-title">Settings</h2>
-                <button type="button" class="modal-close-button" id="settings-modal-close-button">×</button>
+                <button type="button" class="modal-close-button" id="settings-modal-close-button"></button>
             </div>
             <div class="modal-body">
 
@@ -211,10 +211,8 @@
 
                     <div class="color-picker-container">
 
-                        <input type="color" class="color-picker" id="color-picker-left"
-                            onchange="settings.colors.update()" value="#ff00b1">
-                        <input type="color" class="color-picker" id="color-picker-right"
-                            onchange="settings.colors.update()" value="#8cc63f">
+                        <input type="color" class="color-picker" id="color-picker-left" value="#ff00b1">
+                        <input type="color" class="color-picker" id="color-picker-right" value="#8cc63f">
 
                     </div>
 
@@ -224,8 +222,7 @@
 
                     <div class="twitch-username-container">
 
-                        <input type="text" class="form-control" id="twitchUsernameInput" placeholder="Twitch username">
-                        <div class="invalid-feedback"></div>
+                        <input type="text" id="twitchUsernameInput" placeholder="Twitch username">
 
                         <button class="twitch-connection-button" type="button" id="twitch-connection-button"> CONNECT
                         </button>
@@ -233,9 +230,9 @@
                     </div>
 
                     <div class="twitch hidden twitch-extra-options" id="twitch-extra-options">
-                        <input type="text" class="form-control twitch-vote-command" id="voteLeftCommand-input"
+                        <input type="text" class="twitch-vote-command" id="voteLeftCommand-input"
                             placeholder="#1">
-                        <input type="text" class="form-control twitch-vote-command" id="voteRightCommand-input"
+                        <input type="text" class="twitch-vote-command" id="voteRightCommand-input"
                             placeholder="#2">
                     </div>
                 </div>
@@ -253,7 +250,7 @@
         <div class="modal-dialog">
             <div class="modal-header">
                 <h2 class="modal-title">Customize Character</h2>
-                <button type="button" class="modal-close-button" id="customCharacter-modal-close-button">×</button>
+                <button type="button" class="modal-close-button" id="customCharacter-modal-close-button"></button>
             </div>
             <div class="modal-body">
                     <input type="url" class="form-control" id="customImage-input"

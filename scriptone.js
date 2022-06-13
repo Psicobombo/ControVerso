@@ -26,16 +26,12 @@ const settings = {
 }
 
 // listen for load event in the window
-window.addEventListener("load", function () {
+window.addEventListener("load",  () => {
 
-    // initialize stopwatch
+    // initialize shit
     sw.init()
 
-    // initialize twitch
     twitch.init()
-
-    // TODO: PER PSICO
-    // add event listener for setting button
 
     settingsModal.init()
 
@@ -224,6 +220,9 @@ function shuffle(array) {
 }
 
 function cardButtonHandler(e) {
+
+    //TODO: put it in card class
+
     // currentTarget = element attached to event listener (card); target = clicked element (icons are ignored via css)
     if (e.target != e.currentTarget) {
 
@@ -264,7 +263,8 @@ const settingsModal = {
         this.openButton = document.getElementById("settings-button");
         this.openButton.addEventListener("click", settingsModal.toggleVisibility, false);
 
-        document.querySelectorAll(".color-picker").onchange = settings.colors.update()
+        document.getElementById("color-picker-left").onchange = () => settings.colors.update()
+        document.getElementById("color-picker-right").onchange = () => settings.colors.update()
     },
 
     clickHandler(e) {
